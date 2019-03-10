@@ -42,12 +42,11 @@ public class Board {
      *          Retorna -1 caso contrario
      */
     private int removePiece (Piece piece){
-        if(Utilities.pecaEncaixaTabuleiro(piece, x, y)){
-            board[x][y] = piece.getType();
+        if(Utilities.existePecaTabuleiro(piece)){
+            board[piece.getX()][piece.getY()] = '\0';
             return 0;
         }
-        else{
+        else
             return -1;
-        }
     }
 }
