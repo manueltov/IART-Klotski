@@ -1,6 +1,6 @@
 /**
  * Esta classe define um tabuleiro
- *
+ * <p>
  * Eh composto por uma array multidimensional de pecas
  */
 public class Board {
@@ -9,7 +9,7 @@ public class Board {
 
     /**
      * Construtor de Board
-     *
+     * <p>
      * Ao crir um novo Board, eh inicializado um
      * tabuleiro de Pecas de 5 por 4
      */
@@ -21,15 +21,14 @@ public class Board {
      * Metodo para adicionar pecas ao tabuleiro
      *
      * @param piece - peca a adicionar
-     * @return  Retorna 0 caso peca tenha sido adicionada corretamente
-     *          Retorna -1 caso contrario
+     * @return Retorna 0 caso peca tenha sido adicionada corretamente
+     * Retorna -1 caso contrario
      */
-    private int addPiece (Piece piece, int x, int y){
-        if(Utilities.pecaEncaixaTabuleiro(piece, x, y)){
+    private int addPiece(Piece piece, int x, int y) {
+        if (Utilities.pecaEncaixaTabuleiro(piece, x, y)) {
             board[x][y] = piece.getType();
             return 0;
-        }
-        else{
+        } else {
             return -1;
         }
     }
@@ -38,15 +37,14 @@ public class Board {
      * Metodo para remover pecas ao tabuleiro
      *
      * @param piece - peca a remover
-     * @return  Retorna 0 caso peca tenha sido removida corretamente
-     *          Retorna -1 caso contrario
+     * @return Retorna 0 caso peca tenha sido removida corretamente
+     * Retorna -1 caso contrario
      */
-    private int removePiece (Piece piece){
-        if(Utilities.existePecaTabuleiro(piece)){
+    private int removePiece(Piece piece) {
+        if (Utilities.existePecaTabuleiro(piece)) {
             board[piece.getX()][piece.getY()] = '\0';
             return 0;
-        }
-        else
+        } else
             return -1;
     }
 }
