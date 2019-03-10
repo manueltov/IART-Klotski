@@ -5,8 +5,10 @@
  */
 public class Game {
 
-    public Game() {
-        Board board = new Board();
+    private Board board;
+
+    public Game(int level) {
+        board = Utilities.loadLevel(level);
     }
 
 
