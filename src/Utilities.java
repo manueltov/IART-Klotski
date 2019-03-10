@@ -8,10 +8,4 @@ public class Utilities {
     public static boolean pecaEncaixaTabuleiro (Piece piece, int x, int y){
         return true;
     }
-
-    // TODO
-    // algo q veriica se existe a peca dada no atual tabuleiro
-    public static boolean existePecaTabuleiro(Piece piece) {
-        return true;
-    }
 }
