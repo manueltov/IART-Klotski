@@ -2,7 +2,7 @@
 *.ffs_db
 
 # From IntelliJ IDEA
-.idea/
+.idea\
 *.iml
 
 # Compiled class file
