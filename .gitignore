@@ -1,9 +1,6 @@
-# SYNC file
-*.ffs_db
+# SYNC file *.ffs_db
 
-# From IntelliJ IDEA
-.idea\
-*.iml
+# From IntelliJ IDEA .idea\   *.iml
 
 # Compiled class file
 *.class
