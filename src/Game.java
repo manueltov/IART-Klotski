@@ -20,7 +20,7 @@ public class Game {
      */
     private int addPiece(Piece piece, int x, int y) {
         if (Utilities.pecaEncaixaTabuleiro(piece, x, y)) {
-            board.board[x][y] = piece.getType();
+            board.board[x][y] = piece;
             return 0;
         } else {
             return -1;
@@ -36,7 +36,7 @@ public class Game {
      */
     private int removePiece(Piece piece) {
         if (Utilities.existePecaTabuleiro(piece)) {
-            board.board[piece.getX()][piece.getY()] = '\0';
+            board.board[piece.getX()][piece.getY()] = null;
             return 0;
         } else
             return -1;
