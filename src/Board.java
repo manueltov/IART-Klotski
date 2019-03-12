@@ -141,21 +141,31 @@ public class Board {
     
     
 	public String toString() {  //prints out the size of the piece at each location for example a 1x1 block at 0,0 would just be the number 1 at the location 0,0
+		
+		System.out.println("Board");
 		String board = "";  
-
+		
+		board +="+---------------+\n";
 		for (int j = 0; j < boardHeight; j++) {  
 			for (int k = 0; k < boardWidth; k++) {  
 				if (boardMap.containsKey(new Point(k,j))) {  
 					Piece piece = boardMap.get(new Point(k,j)); 
 					int size = piece.getHeight() * piece.getWidth(); 
-					board += Integer.toString(size);  
+					board += "| "+Integer.toString(size)+" ";  
+					
 				}  
 				else{  
-					board += "O";  
-				}  
-			}  
-			board += "\n";  
-		}  
+					board += "| O ";  
+				} 
+			
+			}
+			board +="|";
+			board += "\n";
+			
+			
+			
+		}
+		board +="+---------------+";
 		return board;  
 	}  
 	
