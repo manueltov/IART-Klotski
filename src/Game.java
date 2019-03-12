@@ -18,14 +18,14 @@ public class Game {
      * @return Retorna 0 caso peca tenha sido adicionada corretamente
      * Retorna -1 caso contrario
      */
-    private int addPiece(Piece piece, int x, int y) {
+   /* private int addPiece(Piece piece, int x, int y) {
         if (Utilities.pecaEncaixaTabuleiro(piece, x, y)) {
             board.board[x][y] = piece;
             return 0;
         } else {
             return -1;
         }
-    }
+    }*/
 
     /**
      * Metodo para remover pecas ao tabuleiro

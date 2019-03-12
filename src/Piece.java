@@ -5,7 +5,7 @@ public class Piece {
 	
 	private  Point upperLeft;
 	private  Point lowRight;
-	private  int pieceSize;
+	private String  pieceSize;
 	
 	
 	
@@ -20,7 +20,7 @@ public class Piece {
 		
 		this.upperLeft=fristPoint;
 		this.lowRight=secondPoint;
-		this.pieceSize=getHeight()+getWidth();
+		this.pieceSize=Integer.toString(getHeight()) + "x" + Integer.toString(getWidth()) ; 
 		
 		
 	}
@@ -34,15 +34,16 @@ public class Piece {
 		return ((this.lowRight.getX() - this.upperLeft.getX()) + 1); 
 	} 
 	
-	public int getPieceType() {
+	public String getPieceType() {
 		return this.pieceSize;
 	}
 	
 	
 	
-	public Piece newCopy() { //returns a copy  this Piece
+	public Piece copyPiece() { //returns a copy  this Piece
 		return new Piece(getUpperPoint(), getLowePoint()); 
-	} 
+	}
+	
 	public int hashCode(){ 
 		return upperLeft.getX() * 3 + upperLeft.getY() * 11 + lowRight.getX() * 19 +lowRight.getY() * 17; 
 	} 
@@ -53,12 +54,12 @@ public class Piece {
 		return piece.upperLeft.equals(upperLeft) && piece.lowRight.equals(lowRight);
 	}
 	
-	public void changeOrientation(Point fristPoint, Point seconPoint) { //moves the block from one place to another whit different _hascode();
+	public void changeOrientation(Point fristPoint, Point seconPoint) { //moves the piece from one place to another whit different _hascode();
 
 		Piece temp = new Piece(fristPoint,seconPoint); 
 
 		if (temp.getPieceType()!= this.getPieceType()) { // check is the same type of piece
-			throw new IllegalArgumentException("Block size can not change diferente type of piece"); 
+			throw new IllegalArgumentException("Piece size can not change diferente type of piece"); 
 		} 
 
 		this.upperLeft=fristPoint; 

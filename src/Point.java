@@ -1,4 +1,4 @@
-import com.sun.org.apache.xerces.internal.impl.dv.ValidatedInfo;
+
 
 public class Point {
 	private int x;
