@@ -5,7 +5,7 @@ public class Piece {
 	
 	private  Point upperLeft;
 	private  Point lowRight;
-	private String  pieceSize;
+	private String  pieceType;
 	
 	
 	
@@ -20,7 +20,7 @@ public class Piece {
 		
 		this.upperLeft=fristPoint;
 		this.lowRight=secondPoint;
-		this.pieceSize=Integer.toString(getHeight()) + "x" + Integer.toString(getWidth()) ; 
+		this.pieceType=Integer.toString(getHeight()) + "x" + Integer.toString(getWidth()) ; 
 		
 		
 	}
@@ -35,7 +35,7 @@ public class Piece {
 	} 
 	
 	public String getPieceType() {
-		return this.pieceSize;
+		return this.pieceType;
 	}
 	
 	
