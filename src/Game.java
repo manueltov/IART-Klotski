@@ -34,12 +34,12 @@ public class Game {
      * @return Retorna 0 caso peca tenha sido removida corretamente
      * Retorna -1 caso contrario
      */
-    private int removePiece(Piece piece) {
+    /*private int removePiece(Piece piece) {
         if (Utilities.existePecaTabuleiro(piece)) {
             board.board[piece.getX()][piece.getY()] = null;
             return 0;
         } else
             return -1;
-    }
+    }*/
 
 }
