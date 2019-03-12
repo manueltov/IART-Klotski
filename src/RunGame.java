@@ -5,6 +5,16 @@ public class RunGame {
 
     public static void main(String[] args) {
     	
+    	/*if (direction.equals("right")){
+			move = new Point(upperl.x+1, upperl.y);
+		}else if (direction.equals("left")){
+			move = new Point(upperl.x-1, upperl.y);
+		}else if (direction.equals("up")){
+			move = new Point(upperl.x, upperl.y-1);
+		}else if (direction.equals("down")){
+			move = new Point(upperl.x, upperl.y+1);
+		}*/
+    	
     	Board board=new Board(5, 4);
     	
     	Point onePoint=new Point(1, 0);

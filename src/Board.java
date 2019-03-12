@@ -161,11 +161,13 @@ public class Board {
 			}
 			board +="|";
 			board += "\n";
+			board +="+---------------+";
+			board += "\n";
 			
 			
 			
 		}
-		board +="+---------------+";
+		
 		return board;  
 	}  
 	
