@@ -87,7 +87,6 @@ public class Board {
 	}
     
     
-    
     public void makeMove(Piece piece, Point point) throws IllegalStateException {  
 
 		Piece temp = piece.copyPiece();//copy of the piece being moved  
