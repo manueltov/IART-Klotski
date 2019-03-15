@@ -57,8 +57,10 @@ public class Piece {
 	public void changeOrientation(Point fristPoint, Point seconPoint) { //moves the piece from one place to another whit different _hascode();
 
 		Piece temp = new Piece(fristPoint,seconPoint); 
+		
+		
 
-		if (temp.getPieceType()!= this.getPieceType()) { // check is the same type of piece
+		if (temp.getHeight() != this.getHeight() || temp.getWidth() != this.getWidth()) { // check is the same type of piece
 			throw new IllegalArgumentException("Piece size can not change diferente type of piece"); 
 		} 
 

@@ -1,7 +1,9 @@
 import java.util.ArrayList; 
 import java.util.HashMap; 
 import java.util.HashSet; 
-import java.util.Iterator; 
+import java.util.Iterator;
+
+import javax.swing.text.StyledEditorKit.BoldAction; 
 
 
 
@@ -16,6 +18,7 @@ public class Board {
 	private int boardHeight;  
 	private ArrayList<String> moves; 
 	private HashSet<Piece> pieces;
+	private boolean isvalid;
 
     /**
      * Construtor de Board
@@ -34,6 +37,8 @@ public class Board {
     	this.boardMap=new HashMap<Point, Piece>();
     	this.moves=new ArrayList<String>();
     	this.pieces=new HashSet<Piece>();
+    	this.isvalid=false;
+    	
     	
         //board = new Piece[5][4];
     }
@@ -68,8 +73,11 @@ public class Board {
     public boolean validMove(Piece piece, Point point) {  //checks  is the new point   is a valid move 
 
 		point.validatePoint();
+		//System.out.println(point.toString());
+		if (point.getX()>(boardWidth-1)|| point.getY() > (boardHeight-1)) {  
+			//System.out.println("asdddddddddddddddddddddddddd");
+			this.isvalid=false;
 
-		if (point.getX()> boardWidth || point.getY() > boardHeight) {  
 			return false;  
 		}  
 
@@ -77,28 +85,33 @@ public class Board {
 
 		for (int j = point.getX(); j < point.getX() + piece.getWidth(); j++) {  
 			for (int k = point.getY(); k < point.getY() +piece.getHeight(); k++) {  
-				if (boardMap.containsKey(new Point(j,k))) {   
+				if (boardMap.containsKey(new Point(j,k))) { 
+					//System.out.println("asdddddddddddddddddddddddddd");
+					this.isvalid=false;
 					insertPieceBoard(piece);
 					return false;  
 				}  
+				
 			}  
 		}  
+		
+		this.isvalid=true;
 		return true;  
 	}
     
     
     
-    public void makeMove(Piece piece, Point point) throws IllegalStateException {  
+    public boolean makeMove(Piece piece, Point point) {  
 
 		Piece temp = piece.copyPiece();//copy of the piece being moved  
 		
 
 		if (!validMove(piece, point)) {  
-			throw new IllegalStateException("not a valid move!");  
+			//System.out.println("asdddddddddddddddddddddddddd");
+			return false; 
 		}  
 		else{
 			insertPieceBoard(piece);//refill the piece in because we are creating a new Board with the updated piece position  
-			
 			temp.changeOrientation(point, new Point(point.getX() + piece.getWidth()-1, point.getY() + piece.getHeight()-1));  
 		}  
 
@@ -106,8 +119,12 @@ public class Board {
 		this.clearPiece(piece);
 		this.insertPieceBoard(temp);
 		
-		String moveMade = Integer.toString(piece.getUpperPoint().getY()) + " " +  Integer.toString(piece.getUpperPoint().getX()) + " " + Integer.toString(point.getY()) + " " + Integer.toString(point.getX());  
+		String moveMade = "("+Integer.toString(piece.getUpperPoint().getY()) + " " +  Integer.toString(piece.getUpperPoint().getX()) + ")"+ " "+ Integer.toString(point.getY()) + " " + Integer.toString(point.getX());  
 		this.moves.add(moveMade); 
+		//toString();
+		return true;
+		
+		
 	}
     
     
@@ -121,18 +138,11 @@ public class Board {
 		}  
 
 		insertPieceBoard(piece);
+		
 	}  
     
     
-    public String displayMoves() { //prints all the moves made previously to get to this board in myMoves
-
-		String allMoves = ""; 
-		for (int i = 0; i < moves.size(); i++) { 
-			allMoves += moves.get(i); 
-			allMoves += "\n"; 
-		} 
-		return allMoves; 
-	} 
+    
     
     public HashMap<Point, Piece> getboardMap() { 
 		return boardMap; 
@@ -172,6 +182,21 @@ public class Board {
 	}  
 	
 	
+	public boolean equals(Object o) {  
+		Board board = (Board) o;  
+		
+		
+		if (board.boardHeight != boardHeight || board.boardWidth != boardWidth)  
+			return false;  
+		else if (!this.boardMap.equals(board.boardMap)) {  //same board if map are equal
+			return false;  
+		}  
+		else {  
+			return true;  
+		}  
+	}  
+	
+	
 	
     
     public int getHeight() { 
@@ -184,6 +209,28 @@ public class Board {
 
 	public HashSet<Piece> getPieces() { 
 		return pieces; 
+	} 
+	
+	public ArrayList<String>getMoves(){
+		return this.moves;
+	}
+	
+	public String displayMoves() { //prints all the moves made previously to get to this board in myMoves
+
+		String allMoves = ""; 
+		for (int i = 0; i < moves.size(); i++) { 
+			allMoves += moves.get(i); 
+			allMoves += "\n"; 
+		} 
+		return allMoves; 
+	}
+
+
+
+
+	public boolean getisValid() {
+		// TODO Auto-generated method stub
+		return this.isvalid;
 	} 
     
     
