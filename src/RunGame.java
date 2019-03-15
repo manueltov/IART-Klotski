@@ -66,7 +66,18 @@ public class RunGame {
         Point twoPoint12=new Point(3, 4);
         Piece piece12=new Piece(onePoint12, twoPoint12);
 
+<<<<<<< HEAD
       
+=======
+        //Só para exemplo (1x2)
+        Point onePoint13=new Point(1, 4);
+        Point twoPoint13=new Point(2, 4);
+        Piece piece13=new Piece(onePoint13, twoPoint13);
+
+
+
+
+>>>>>>> 2d3134b5b3d9461f2e1f47f512f98d508b705f3c
     	
     	board.insertPieceBoard(piece);
     	board.insertPieceBoard(piece1);
@@ -81,6 +92,7 @@ public class RunGame {
         board.insertPieceBoard(piece10);
         board.insertPieceBoard(piece11);
         board.insertPieceBoard(piece12);
+<<<<<<< HEAD
    ///////////////////////////////////////////////////////////////////////////
         
         
@@ -97,6 +109,10 @@ public class RunGame {
         /*System.out.println("--------------------------------------------------------------------------------------------------");
         //exemplo
        
+=======
+        //exemplo
+        board.insertPieceBoard(piece13);
+>>>>>>> 2d3134b5b3d9461f2e1f47f512f98d508b705f3c
     	
     	System.out.println("--------------------------------------------------------------------------------------------------");
     	
@@ -112,7 +128,15 @@ public class RunGame {
         
         System.out.println("--------------------------------------------------------------------------------------------------");
 
+<<<<<<< HEAD
  
+=======
+    	System.out.println("Peça_tipo 1x2");
+    	System.out.println(piece13.getPieceType());
+    	System.out.println(piece13.toString());
+    	
+    	System.out.println("--------------------------------------------------------------------------------------------------");
+>>>>>>> 2d3134b5b3d9461f2e1f47f512f98d508b705f3c
     	
     	System.out.println("Peça_tipo 2x2");
     	System.out.println(piece2.getPieceType());
@@ -120,7 +144,10 @@ public class RunGame {
     	
     	System.out.println("--------------------------------------------------------------------------------------------------");
 
+<<<<<<< HEAD
     	
+=======
+>>>>>>> 2d3134b5b3d9461f2e1f47f512f98d508b705f3c
     	System.out.println(board.toString());
     	//System.out.println(board.displayMoves());
     	System.out.println(bfs.getCurrBoard().toString());*/
