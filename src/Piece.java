@@ -3,7 +3,10 @@
  */
 public class Piece {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 	private  Point upperLeft;
 	private  Point lowRight;
@@ -25,6 +28,7 @@ public class Piece {
 		this.pieceType=Integer.toString(getHeight()) + "x" + Integer.toString(getWidth()) ;
 
 
+<<<<<<< Updated upstream
 	}
 
 
@@ -32,6 +36,15 @@ public class Piece {
 		return ((this.lowRight.getY() - this.upperLeft.getY()) + 1);
 	}
 
+=======
+	}
+
+
+	public int getHeight() {
+		return ((this.lowRight.getY() - this.upperLeft.getY()) + 1);
+	}
+
+>>>>>>> Stashed changes
 	public int getWidth() {
 		return ((this.lowRight.getX() - this.upperLeft.getX()) + 1);
 	}
@@ -44,12 +57,21 @@ public class Piece {
 
 	public Piece copyPiece() { //returns a copy  this Piece
 		return new Piece(getUpperPoint(), getLowePoint());
+<<<<<<< Updated upstream
 	}
 
 	public int hashCode(){
 		return upperLeft.getX() * 3 + upperLeft.getY() * 11 + lowRight.getX() * 19 +lowRight.getY() * 17;
 	}
 
+=======
+	}
+
+	public int hashCode(){
+		return upperLeft.getX() * 3 + upperLeft.getY() * 11 + lowRight.getX() * 19 +lowRight.getY() * 17;
+	}
+
+>>>>>>> Stashed changes
 
 	public boolean equals(Object o){
 		Piece piece = (Piece) o;
@@ -120,6 +142,7 @@ public class Piece {
 
 	// ////////////////////////
 	// Getters and Setters
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 
     // VARIABLES
@@ -144,6 +167,8 @@ public class Piece {
         this.pieceType = Integer.toString(getHeight()) + "x" + Integer.toString(getWidth());
     }
 
+=======
+>>>>>>> Stashed changes
 
     public int getHeight() {
         return ((this.lowRight.getY() - this.upperLeft.getY()) + 1);
