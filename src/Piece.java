@@ -79,6 +79,10 @@ public class Piece {
     // ////////////////////////
     // Variables
 
+
+	// ////////////////////////
+	// Variables
+
     /*      TYPES
     -> a -> blank_space
     -> b -> 1 x 1
@@ -89,20 +93,20 @@ public class Piece {
     // Type
     // private char type;
 
-    // Coordinates
-    //private int x;
-    //private int y;
+	// Coordinates
+	//private int x;
+	//private int y;
 
-    // ////////////////////////
-    // Constructor
+	// ////////////////////////
+	// Constructor
     /*public Piece(char type, int x, int y) {
         this.type = type;
         this.x = x;
         this.y = y;
     }*/
 
-    // ////////////////////////
-    // Getters and Setters
+	// ////////////////////////
+	// Getters and Setters
 
     /*public char getType() {
         return type;
