@@ -3,10 +3,16 @@
  */
 public class Piece {
 
+    // VARIABLES
     private Point upperLeft;
     private Point lowRight;
     private String pieceType;
 
+    /**
+     * Construtor de peca
+     * @param fristPoint - Peca de cima ah esquerda
+     * @param secondPoint - Peca de baixo ah direita
+     */
     public Piece(Point fristPoint, Point secondPoint) {
         fristPoint.validatePoint();
         secondPoint.validatePoint();
@@ -45,6 +51,11 @@ public class Piece {
         return piece.upperLeft.equals(upperLeft) && piece.lowRight.equals(lowRight);
     }
 
+    /**
+     * Mudar uma peca de sitio
+     * @param fristPoint - Ponto de cima ah esquerda do sitio destino
+     * @param seconPoint - Ponto de baixo ah direita do sitio destino
+     */
     public void changeOrientation(Point fristPoint, Point seconPoint) { //moves the piece from one place to another whit different _hascode();
         Piece temp = new Piece(fristPoint, seconPoint);
 
@@ -58,6 +69,8 @@ public class Piece {
     public String toString() {
         return " (" + this.upperLeft + this.lowRight + ") ";
     }
+
+    // Getters and Setters
 
     public Point getUpperPoint() {
         return this.upperLeft;
@@ -75,60 +88,4 @@ public class Piece {
         this.lowRight = newPoint;
     }
 
-
-    // ////////////////////////
-    // Variables
-
-
-	// ////////////////////////
-	// Variables
-
-    /*      TYPES
-    -> a -> blank_space
-    -> b -> 1 x 1
-    -> c -> 1 x 2
-    -> d -> 2 x 1
-    -> e -> 2 x 2       */
-
-    // Type
-    // private char type;
-
-	// Coordinates
-	//private int x;
-	//private int y;
-
-	// ////////////////////////
-	// Constructor
-    /*public Piece(char type, int x, int y) {
-        this.type = type;
-        this.x = x;
-        this.y = y;
-    }*/
-
-	// ////////////////////////
-	// Getters and Setters
-
-    /*public char getType() {
-        return type;
-    }
-
-    public void setType(char type) {
-        this.type = type;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }*/
 }

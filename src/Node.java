@@ -1,19 +1,19 @@
-
+/**
+ * Classe para nos para criacao do grafo
+ */
 public class Node {
 
-    private Board myBoard;
+	private Board myBoard;
 
-    public Node(Board b) {
-        myBoard = b;
-    }
+	public Node(Board b) {
+		myBoard = b;
+	}
 
-    public Board getBoard() {
+	public Board getBoard() {
+		return this.myBoard;
+	}
 
-        return this.myBoard;
-    }
-
-    public void setBoard(Board board) {
-
-        this.myBoard = board;
-    }
+	public void setBoard(Board board) {
+		this.myBoard = board;
+	}
 }

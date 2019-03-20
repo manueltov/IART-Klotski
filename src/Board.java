@@ -10,7 +10,8 @@ import javax.swing.text.StyledEditorKit.BoldAction;
  */
 public class Board {
 
-    private HashMap<Point, Piece> boardMap;
+	// VARIABLES
+	private HashMap<Point, Piece> boardMap;
     private int boardWidth;
     private int boardHeight;
     private ArrayList<String> moves;
@@ -19,7 +20,7 @@ public class Board {
 
     /**
      * Construtor de Board
-     * Ao crir um novo Board, eh inicializado um
+     * Ao criar um novo Board, eh inicializado um
      * tabuleiro de Pecas de 5 por 4
      */
     public Board(int height, int width) {
@@ -38,7 +39,11 @@ public class Board {
         //board = new Piece[5][4];
     }
 
-    public void clearPiece(Piece piece) {  // remove a piece in board
+	/**
+	 * Metodo para remover peca do tabuleiro
+	 * @param piece - Peca a remover
+	 */
+	public void clearPiece(Piece piece) {  // remove a piece in board
         for (int j = piece.getUpperPoint().getX(); j <= piece.getLowePoint().getX(); j++) {
             for (int k = piece.getUpperPoint().getY(); k <= piece.getLowePoint().getY(); k++) {
                 boardMap.remove(new Point(j, k));
@@ -78,14 +83,8 @@ public class Board {
         this.isvalid = true;
         return true;
     }
-    
-    
-<<<<<<<HEAD
 
-    public boolean makeMove(Piece piece, Point point) {  
-=======
-        public void makeMove (Piece piece, Point point) throws IllegalStateException {
->>>>>>>2d 3134 b5b3d9461f2e1f47f512f98d508b705f3c
+    public boolean makeMove(Piece piece, Point point) {
 
             Piece temp = piece.copyPiece();//copy of the piece being moved
 

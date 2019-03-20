@@ -6,6 +6,9 @@
 .idea/
 *.iml
 
+# From Eclipse
+.classpath
+
 # Compiled class file
 *.class
 
