@@ -1,7 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 
 /**
  * Classe q tem o main
@@ -9,6 +5,13 @@ import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
 public class RunGame {
 
     public static void main(String[] args) {
+    	
+    	Board board=new Board(5, 4);
+    	Board board1=new Board(5, 4);
+    	
+    	Point onePoint=new Point(0, 0);
+    	Point twoPoint=new Point(0, 0);
+    	Piece piece=new Piece(onePoint, twoPoint);
 
         Board board = new Board(5, 4);
 
@@ -47,13 +50,14 @@ public class RunGame {
         Piece piece7 = new Piece(onePoint7, twoPoint7);
 
 
-        Point onePoint8 = new Point(3, 2);
-        Point twoPoint8 = new Point(3, 3);
-        Piece piece8 = new Piece(onePoint8, twoPoint8);
 
 
 
     	
+        Point onePoint11=new Point(0, 4);
+        Point twoPoint11=new Point(0, 4);
+        Piece piece11=new Piece(onePoint11, twoPoint11);
+        
         board.insertPieceBoard(piece);
     	board.insertPieceBoard(piece1);
     	board.insertPieceBoard(piece2);
@@ -67,19 +71,24 @@ public class RunGame {
         board.insertPieceBoard(piece10);
         board.insertPieceBoard(piece11);
         board.insertPieceBoard(piece12);
-
+        
+        
+      
+      
+        
+        
+ 
    ///////////////////////////////////////////////////////////////////////////
         
        
-        BFS bfs=new BFS(board,board);
+        BFS bfs=new BFS(board);
         
-      
-        bfs.findAllPossibleMoves();
-        //bfs.solve();
+        System.out.println(board.toString()); 
+        bfs.solve();
         
         
-        /*for(Node s : bfs.getNodes()) { 
-        	  System.out.println(s.getBoard().toString()); 
+        /*for(Board s : bfs.getseeB()) { 
+        	  System.out.println(s.toString()); 
         	}*/
         
        

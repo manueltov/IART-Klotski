@@ -30,8 +30,9 @@ public class Point {
 			throw new IllegalArgumentException("Negative Point");
 		}
 	}
-
-	public int hashCode() {
+	
+	@Override
+	public int hashCode(){
 		return (Integer.toString(x) + "," + Integer.toString(y)).hashCode();
 	}
 

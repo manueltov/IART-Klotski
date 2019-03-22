@@ -38,11 +38,11 @@ public class Board {
 			throw new IllegalArgumentException("Exceeded maximum allowed configuration for tray size.");  
 		if (height < 0 || width < 0)   
 			throw new IllegalArgumentException("Size must be a nonnegative number.");  
-		
-		
+
+
 		boardWidth = width;  
 		boardHeight = height;  
-		
+
 		this.boardHeight=height;
 		this.boardWidth=width;
 		this.boardMap=new HashMap<Point, Piece>();
@@ -112,7 +112,7 @@ public class Board {
 		return true;  
 	}
 
-	
+
 
 	public Board makeMove(Piece piece, Point point)throws IllegalStateException{  
 
@@ -131,12 +131,12 @@ public class Board {
 
 
 		Board board = new Board(boardHeight, boardWidth, this);
-		
+
 		board.clearPiece(piece);
 		board.insertPieceBoard(temp);
 
-		String moveMade = "("+Integer.toString(piece.getUpperPoint().getY()) + " " +  Integer.toString(piece.getUpperPoint().getX()) + ")"+ "->"+ "("+Integer.toString(point.getY()) + " " + Integer.toString(point.getX())+")";  
-	    board.moves.add(moveMade); 
+		String moveMade = "("+Integer.toString(piece.getUpperPoint().getX()) + " " +  Integer.toString(piece.getUpperPoint().getY()) + ")"+ "->"+ "("+Integer.toString(point.getX()) + " " + Integer.toString(point.getY())+")";  
+		board.moves.add(moveMade); 
 		//toString();
 		return board;
 
@@ -166,7 +166,7 @@ public class Board {
 
 
 
-	public String toString() {  //prints out the size of the piece at each location for example a 1x1 block at 0,0 would just be the number 1 at the location 0,0
+	public String toString() {  //prints out the size of the piece at each location for example a 1x1 piece at 0,0 would just be the number 1 at the location 0,0
 
 		//System.out.println("Board");
 		String board = "";  
@@ -198,6 +198,7 @@ public class Board {
 	}  
 
 
+	@Override
 	public boolean equals(Object o) {  
 		Board board = (Board) o;  
 
@@ -212,6 +213,17 @@ public class Board {
 		}  
 	}  
 
+
+	
+	@Override
+	public int hashCode(){ //new hashCode 
+
+		int rtn = 0; 
+		for (Piece piece: boardMap.values()) { 
+			rtn += Math.pow(piece.getUpperPoint().getX(), 2) + Math.pow(piece.getUpperPoint().getY(), 3) + Math.pow(piece.getLowePoint().getX(), 4) + Math.pow(piece.getLowePoint().getY(), 5); 
+		} 
+		return rtn; 
+	}  
 
 
 
@@ -255,7 +267,7 @@ public class Board {
 		} 
 		return allMoves; 
 	}
-	
+
 	public boolean getisValid() {
 		// TODO Auto-generated method stub
 		return this.isvalid;
@@ -301,8 +313,8 @@ public class Board {
 	} 
 
 
-	 
-	
+
+
 
 
 

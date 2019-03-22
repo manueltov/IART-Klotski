@@ -23,3 +23,20 @@ public class Utilities {
         return null;
     }
 }
+
+
+
+/* board1.insertPieceBoard(piece);
+	board1.insertPieceBoard(piece1);
+	board1.insertPieceBoard(piece2);
+ board1.insertPieceBoard(piece3);
+ board1.insertPieceBoard(piece4);
+ board1.insertPieceBoard(piece5);
+ board1.insertPieceBoard(piece6);
+ board1.insertPieceBoard(piece7);
+ board1.insertPieceBoard(piece8);
+ board1.insertPieceBoard(piece9);
+ board1.insertPieceBoard(piece10);
+ board1.insertPieceBoard(piece11);
+ board1.insertPieceBoard(piece12);*/
+ 

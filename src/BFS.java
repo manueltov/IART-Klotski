@@ -1,4 +1,4 @@
-import java.io.*;
+
 import java.util.*;
 import java.util.Queue;
 
@@ -8,36 +8,33 @@ public class BFS {
 
 
 	private Board originalBoard; //original starting board
-	private Board goalBoard; // end game 
 	private Board currentBoard; //the board we have just taken out of the fringe
 	private Queue<Node>nodes;
 	private HashSet<Board> boardSeen; //hashset of all repeat boards
 	private Node temp;
 	private int moveCount; 
-	private int boardMove;
 	private int numBoard;
 	private long startTime;
 	private long stopTime;
 
 
-	public BFS (Board stardBoard , Board goalBoard) {
+	public BFS (Board stardBoard) {
 
 		this.originalBoard=stardBoard;
-		this.goalBoard=goalBoard;
+		
 		this.currentBoard=stardBoard;
-
-		this.boardMove=0;
-		this.boardMove=0;
+		
 		this.numBoard=0;
 		this.startTime=0;
 		this.startTime=0;
 
 		boardSeen = new HashSet<Board>();
 		boardSeen.add(stardBoard);
+		//boardSeen.add(b);
 
 		nodes=new LinkedList<Node>();
 		nodes.add(new Node(originalBoard));
-		
+
 	}
 
 	public  boolean tryMoveDirection(Point point,String direction) {
@@ -80,14 +77,14 @@ public class BFS {
 
 
 				if (!boardSeen.contains(possibleBoard)){
+					//System.out.println(boardSeen.contains(possibleBoard));
 					numBoard++;
-					System.out.println("new block positions in board: " + "\n" + possibleBoard);
+					System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					Node n = new Node(possibleBoard);
 					nodes.add(n);
 					boardSeen.add(possibleBoard);
-					boardMove++;
 				}
-
+				
 
 
 			}catch(IllegalStateException e){
@@ -161,34 +158,61 @@ public class BFS {
 		return this.nodes;
 	}
 
+	public  HashSet<Board> getseeB(){
+		return this.boardSeen;
+	}
 
 	public boolean isSolved(){
-
-		for (Piece i: goalBoard.getPieces()){ //checks to see if all blocks in goal board are in same position in current board
-			if (!currentBoard.getPieces().contains(i)) 
-				return false; 
-		} 
-		return true; 
+		Point uppointGoalPoint=new Point(1, 3);
+		Point downPointGoalPoint=new Point(2, 4);
+		Piece aPiece= new Piece(uppointGoalPoint,downPointGoalPoint);
+		
+		if(currentBoard.getboardMap().containsValue(aPiece)) {
+			return true;
+		}
+		return false; 
 	}
 
 
-	
-	// o codigo nao funciona da forma esperada ainda 
-	public void solve(){
 
+	public void solve(){
+		
+		startTime = System.currentTimeMillis();
 		moveCount = 0;
 
-		while ( !this.nodes.isEmpty()){ //  ja implementado  issolved depois e para meter aqui 
-			boardMove = 0;
-			this.findAllPossibleMoves(); //see below code
+		while (!nodes.isEmpty()){ 
+			
+			this.findAllPossibleMoves(); 
+			if(isSolved()) {
+				break;
+			}
 
 			temp =nodes.remove(); //takes out board from list
 			currentBoard = temp.getBoard();
 
 			moveCount++;
 		}
+		stopTime = System.currentTimeMillis();
+		
+	
+		System.out.println("Find Solution");
+		System.out.println(currentBoard.toString());
+		System.out.println("move count: " + moveCount);
+		System.out.println("number of boards added to nodes:" + numBoard);
+		System.out.println("final time : " + (float)(stopTime - startTime)/1000+" seconds\n");
+		
+		System.out.println("Short Moves to Goal State :\n");
+		System.out.println("Moves :"+currentBoard.getMoves().size());
+		System.out.println("(x y)to(x y)\n");
+		System.out.println(currentBoard.displayMoves());
+		
+		
+		
+		
 
 	}
+	
+	
 
 
 }
