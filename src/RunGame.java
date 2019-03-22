@@ -81,10 +81,10 @@ public class RunGame {
    ///////////////////////////////////////////////////////////////////////////
         
        
-        BFS bfs=new BFS(board);
+        Algorithms a=new Algorithms(board);
         
         System.out.println(board.toString()); 
-        bfs.solve();
+        a.bfsSolver();
         
         
         /*for(Board s : bfs.getseeB()) { 

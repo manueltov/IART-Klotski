@@ -2,9 +2,14 @@
 import java.util.*;
 import java.util.Queue;
 
+<<<<<<< refs/remotes/origin/master:src/BFS.java
 public class BFS {
+=======
+import com.sun.org.apache.xml.internal.security.algorithms.Algorithm;
+>>>>>>> update bfs finalversion:src/Algorithms.java
 
-public class BFS {
+
+public class Algorithms {
 
 
 	private Board originalBoard; //original starting board
@@ -18,7 +23,7 @@ public class BFS {
 	private long stopTime;
 
 
-	public BFS (Board stardBoard) {
+	public Algorithms (Board stardBoard) {
 
 		this.originalBoard=stardBoard;
 		
@@ -175,7 +180,7 @@ public class BFS {
 
 
 
-	public void solve(){
+	public void bfsSolver(){
 		
 		startTime = System.currentTimeMillis();
 		moveCount = 0;
@@ -194,9 +199,13 @@ public class BFS {
 		}
 		stopTime = System.currentTimeMillis();
 		
-	
+
+		
 		System.out.println("Find Solution");
 		System.out.println(currentBoard.toString());
+		System.out.println("+---------------------------------+");
+		System.out.println("| Solve whit Breadth First Search |");
+		System.out.println("+---------------------------------+");
 		System.out.println("move count: " + moveCount);
 		System.out.println("number of boards added to nodes:" + numBoard);
 		System.out.println("final time : " + (float)(stopTime - startTime)/1000+" seconds\n");
