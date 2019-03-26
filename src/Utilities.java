@@ -1,42 +1,59 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * Esta classe tem metodos uteis para as restantes classes
  */
 public class Utilities {
 
-    // TODO
-    // algo q veriica se nas coordenadas dadas ha espaco para adicionar
-    // especificamente a peca que foi dada
-    public static boolean pecaEncaixaTabuleiro(Piece piece, int x, int y) {
-        return true;
+    /**
+     * Este metodo apos ler ficheiro vai carregar as varias pecas desse nivel
+     * para um tabueleiro e devolve esse tabuleiro jah com as pecas
+     * @param levelnum - nivel a carregar
+     * @return devolve um tabuleiro com as peças nas posição inicial desse nivel
+     */
+    public static Board loadLevel(int levelnum) {
+        String fileName = "level" + levelnum + ".txt";
+        int[] nums = fileToNumVector(fileName);
+        Board board = new Board(nums[0],nums[1]);
+        for (int i = 4; i < nums.length ; i++){
+            Point onePoint = new Point(nums[i],nums[++i]);
+            Point twoPoint = new Point(nums[++i], nums[++i]);
+            Piece piece = new Piece(onePoint, twoPoint);
+            board.insertPieceBoard(piece);
+        }
+        return board;
     }
 
-    // TODO
-    // algo q veriica se existe a peca dada no atual tabuleiro
-    public static boolean existePecaTabuleiro(Piece piece) {
-        return true;
-    }
-
-    // TODO
-    // um metodo que apos ler ficheiro vai carregar as varias pecas desse nivel
-    // para um tabueleiro e devolve esse tabuleiro jah com as pecas
-    public static Board loadLevel(int level) {
-        return null;
+    /**
+     * Metodo auxiliar que recebe um ficheiro com as coordenadas das
+     * peças e devolve um vetor com as peças
+     * @param fileName - nome do ficheiro que vai ser lido
+     * @return vector de interios proveniente do ficheiro
+     */
+    private static int[] fileToNumVector (String fileName){
+        ArrayList<String> arrString1 = new ArrayList<>();
+        ArrayList<Integer> arrString2 = new ArrayList<>();
+        try{
+            Scanner sc = new Scanner(new File(fileName));
+            while (sc.hasNextLine())
+                arrString1.add(sc.nextLine());
+            sc.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (String str: arrString1) {
+            String[] vec = str.split(" ");
+            for (String str2 : vec)
+                arrString2.add(Integer.parseInt(str2));
+        }
+        int[] numbers = new int[arrString2.size()];
+        int i = 0;
+        for (int num : arrString2)
+            numbers[i++] = num;
+        return numbers;
     }
 }
-
-
-
-/* board1.insertPieceBoard(piece);
-	board1.insertPieceBoard(piece1);
-	board1.insertPieceBoard(piece2);
- board1.insertPieceBoard(piece3);
- board1.insertPieceBoard(piece4);
- board1.insertPieceBoard(piece5);
- board1.insertPieceBoard(piece6);
- board1.insertPieceBoard(piece7);
- board1.insertPieceBoard(piece8);
- board1.insertPieceBoard(piece9);
- board1.insertPieceBoard(piece10);
- board1.insertPieceBoard(piece11);
- board1.insertPieceBoard(piece12);*/
- 
