@@ -21,14 +21,18 @@ public class RunGame {
             level = Integer.parseInt(strlevel);
         }
         sc.close();
+        
+        
         Board board = Utilities.loadLevel(level);
+        Algorithms a= new Algorithms(board);
 
 
-        //Algorithms a=new Algorithms(board);
+     
         
         System.out.println(board.toString()); 
-       //a.sSolver();
-       a.bfsSolver();
+        
+        //a.bfsSolver();
+        a.dfsSolver();
         
         
         /*for(Node s : a.getNodes()) { 
