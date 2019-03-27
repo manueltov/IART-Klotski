@@ -27,11 +27,12 @@ public class RunGame {
         //Algorithms a=new Algorithms(board);
         
         System.out.println(board.toString()); 
-        //a.bfsSolver();
+       //a.sSolver();
+       a.bfsSolver();
         
         
-        /*for(Board s : bfs.getseeB()) { 
-        	  System.out.println(s.toString()); 
+        /*for(Node s : a.getNodes()) { 
+        	  System.out.println(s.getBoard().toString()); 
         	}*/
     }
 }

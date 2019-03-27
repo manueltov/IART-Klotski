@@ -6,13 +6,15 @@ public class Node {
 
 	private Board myBoard;
 	private boolean visited;
+    private int manhatdis;
 
 
 
 
-	public Node(Board b){
+	public Node(Board b,int ms){
 		myBoard = b;
 		visited=false;
+		manhatdis=ms;
 	}
 
 
@@ -31,6 +33,11 @@ public class Node {
 	public boolean getVisited() {
 
 		return this.visited;
+	}
+	
+	public int getMath() {
+
+		return this.manhatdis;
 	}
 	
 	public void setVisited(boolean isVisited) {
