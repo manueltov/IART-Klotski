@@ -2,13 +2,7 @@
 import java.util.*;
 import java.util.Queue;
 
-<<<<<<< refs/remotes/origin/master:src/BFS.java
-public class BFS {
-=======
-import com.sun.org.apache.xml.internal.security.algorithms.Algorithm;
->>>>>>> update bfs finalversion:src/Algorithms.java
 
-import sun.util.logging.resources.logging;
 
 
 public class Algorithms {

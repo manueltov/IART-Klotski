@@ -25,6 +25,7 @@ public class RunGame {
         
         Board board = Utilities.loadLevel(level);
         Algorithms a= new Algorithms(board);
+        
 
 
      
