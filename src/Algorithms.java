@@ -25,7 +25,7 @@ public class Algorithms {
 	private long stopTime;
 	private float time;
 	Stack<Node> stack;
-	private PriorityQueue<Node> fringe;
+	private PriorityQueue<Node> prioQ;
 
 	long mem;
 
@@ -48,6 +48,8 @@ public class Algorithms {
 		nodes.add(new Node(originalBoard,0));
 		stack=new Stack<Node>();
 		stack.push(new Node(originalBoard,0)); 
+		prioQ= new PriorityQueue<Node>(1000, new NodeComparator()); 
+		prioQ.add(new Node(originalBoard, 0)); 
 	}
 	
 	
@@ -97,10 +99,11 @@ public class Algorithms {
 				if (!boardSeen.contains(possibleBoard)){
 					
 					numBoard++;
-					System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
+					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					Node n = new Node(possibleBoard,this.calculateManhattan(possibleBoard));
 					nodes.add(n);
 					stack.push(n);
+					prioQ.add(n);
 			
 					boardSeen.add(possibleBoard);
 				}
@@ -257,14 +260,15 @@ public class Algorithms {
 
 
 
-		System.out.println("Find Solution");
-		System.out.println(currentBoard.toString());
+		
 		System.out.println("+---------------------------------+");
 		System.out.println("| Solve whit Breadth First Search |");
 		System.out.println("+---------------------------------+");
 		System.out.println("move count: " + moveCount);
 		System.out.println("number of boards added to nodes:" + numBoard);
 		System.out.println("final time : " + time+" seconds\n");
+		System.out.println("Breadth First Search Find Solution");
+		System.out.println(currentBoard.toString());
 
 		/*System.out.println("Short Moves to Goal State :\n");
 		System.out.println("Moves :"+currentBoard.getMoves().size());
@@ -307,14 +311,64 @@ public class Algorithms {
 
 
 
-		System.out.println("Find Solution");
-		System.out.println(currentBoard.toString());
+		
 		System.out.println("+---------------------------------+");
 		System.out.println("| Solve whit Deep First Search    |");
 		System.out.println("+---------------------------------+");
 		System.out.println("move count: " + moveCount);
 		System.out.println("number of boards added to nodes:" + numBoard);
 		System.out.println("final time : " + time+" seconds\n");
+		System.out.println("Deep First Search Find Solution");
+		System.out.println(currentBoard.toString());
+
+		/*System.out.println("Short Moves to Goal State :\n");
+		System.out.println("Moves :"+currentBoard.getMoves().size());
+		System.out.println("(x y)to(x y)\n");
+		System.out.println(currentBoard.displayMoves());
+		System.out.println("Free memory: " +mem);
+		System.out.println("Free final memory: " +finalmem);*/
+
+
+
+	}
+	
+	
+public void greedySolver() {
+		
+		long finalmem;
+		mem=Runtime.getRuntime().freeMemory();
+
+		startTime = System.currentTimeMillis();
+		moveCount = 0;
+
+		while (!prioQ.isEmpty()){ 
+
+			this.findAllPossibleMoves(); 
+			if(isSolved()) {
+				
+				break;
+			}
+			
+			temp =prioQ.remove(); //takes out board from list
+			currentBoard = temp.getBoard();
+
+			moveCount++;
+		}
+		stopTime = System.currentTimeMillis();
+		time=(float)(stopTime - startTime)/1000;
+		finalmem=Runtime.getRuntime().freeMemory();
+
+
+
+		
+		System.out.println("+---------------------------------+");
+		System.out.println("|    Solve whit Greedy Search     |");
+		System.out.println("+---------------------------------+");
+		System.out.println("move count: " + moveCount);
+		System.out.println("number of boards added to nodes:" + numBoard);
+		System.out.println("final time : " + time+" seconds\n");
+		System.out.println("Greedy Search Find Solution");
+		System.out.println(currentBoard.toString());
 
 		/*System.out.println("Short Moves to Goal State :\n");
 		System.out.println("Moves :"+currentBoard.getMoves().size());

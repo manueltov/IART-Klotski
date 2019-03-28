@@ -28,11 +28,12 @@ public class RunGame {
 
 
      
-        
+        System.out.println("Start Board"); 
         System.out.println(board.toString()); 
         
         //a.bfsSolver();
-        a.dfsSolver();
+        //a.dfsSolver();
+        a.greedySolver();
         
         
         /*for(Node s : a.getNodes()) { 
