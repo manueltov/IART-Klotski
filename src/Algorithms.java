@@ -132,11 +132,8 @@ public class Algorithms {
 	}
 
 	public boolean isSolved(){
-		Point uppointGoalPoint=new Point(1, 3);
-		Point downPointGoalPoint=new Point(2, 4);
-		Piece aPiece= new Piece(uppointGoalPoint,downPointGoalPoint);
 
-		if(currentBoard.getboardMap().containsValue(aPiece)) {
+		if(currentBoard.getboardMap().containsValue(currentBoard.getGoalPiece())) {
 			return true;
 		}
 		return false; 

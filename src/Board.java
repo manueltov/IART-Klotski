@@ -5,15 +5,15 @@ import java.util.HashSet;
 
 public class Board {
 
-	// VARIABLES
-	private HashMap<Point, Piece> boardMap;
-    private int boardWidth;
-    private int boardHeight;
-    private ArrayList<String> moves;
-    private HashSet<Piece> pieces;
-    private boolean isvalid;
+	private HashMap<Point, Piece>boardMap;   
+	private int boardWidth;  
+	private int boardHeight;
+	private Piece goalPiece;
+	private ArrayList<String> moves; 
+	private HashSet<Piece> pieces;
+	private boolean isvalid;
 
-	public Board(int height,int width) {
+	public Board(int height, int width, Piece goalPiece) {
 
 		if (height > 256 || width > 256)   
 			throw new IllegalArgumentException("Exceeded maximum allowed configuration for tray size.");  
@@ -22,6 +22,7 @@ public class Board {
 
 		this.boardHeight=height;
 		this.boardWidth=width;
+		this.goalPiece = goalPiece;
 		this.boardMap=new HashMap<Point, Piece>();
 		this.moves=new ArrayList<String>();
 		this.pieces=new HashSet<Piece>();
@@ -31,6 +32,9 @@ public class Board {
 
 	}
 
+	public Piece getGoalPiece() {
+		return goalPiece;
+	}
 
 	public Board(int height, int width, Board parent) {  // constructor for making a board that isn't the initial configuration board
 

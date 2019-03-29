@@ -17,8 +17,11 @@ public class Utilities {
     public static Board loadLevel(int levelnum) {
         String fileName = "level" + levelnum + ".txt";
         int[] nums = fileToNumVector(fileName);
-        Board board = new Board(nums[0],nums[1]);
-        for (int i = 4; i < nums.length ; i++){
+        Point firstPoint = new Point(nums[4], nums[5]);
+        Point secondPoint = new Point(nums[6], nums[7]);
+        Piece goalPiece = new Piece(firstPoint,secondPoint);
+        Board board = new Board(nums[0],nums[1], goalPiece);
+        for (int i = 8; i < nums.length ; i++){
             Point onePoint = new Point(nums[i],nums[++i]);
             Point twoPoint = new Point(nums[++i], nums[++i]);
             Piece piece = new Piece(onePoint, twoPoint);
