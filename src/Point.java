@@ -1,6 +1,3 @@
-/**
- * Classe define um ponto com abcissas e ordenadas
- */
 public class Point {
 	private int x;
 	private int y;
@@ -10,33 +7,28 @@ public class Point {
 		this.y = y;
 	}
 
-	public boolean equals(Object point) {
-		if (this == point) {
+	public  boolean equals(Object point){
+		if(this==point) {
 			return true;
 		}
-		Point point2 = (Point) point;
-		return point2.x == this.x && point2.y == this.y;
+		Point point2=(Point)point;
+		return point2.x==this.x && point2.y==this.y;
 	}
 
 	public String toString() {
-		return "(" + this.x + "," + this.y + ")";
+		return "(" + this.x+","+this.y+")";
 	}
 
-	/**
-	 * Metodo para validar se ponto está no quadrante positivo
-	 */
-	public void validatePoint() {
+	public void validatePoint(){
 		if (this.x < 0 || this.y < 0) {
 			throw new IllegalArgumentException("Negative Point");
 		}
 	}
-	
+
 	@Override
 	public int hashCode(){
 		return (Integer.toString(x) + "," + Integer.toString(y)).hashCode();
 	}
-
-	// Getters and Setters
 
 	public int getX() {
 		return this.x;
