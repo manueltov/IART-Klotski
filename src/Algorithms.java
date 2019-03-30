@@ -34,7 +34,7 @@ public class Algorithms {
 		nodes.add(new Node(originalBoard,0));
 		stack=new Stack<Node>();
 		stack.push(new Node(originalBoard,0));
-		prioQ= new PriorityQueue<Node>(1000, new NodeComparator());
+		prioQ= new PriorityQueue<Node>(10000, new NodeComparator());
 		prioQ.add(new Node(originalBoard, 0));
 	}
 
