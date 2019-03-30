@@ -12,7 +12,7 @@ public class RunGame {
      * @param args
      */
     public static void main(String[] args) {
-        int maxLevel = 9;
+        int maxLevel = 10;
         int level = 0;
         Scanner sc = new Scanner(System.in);
         while (level < 1 | level > maxLevel) {
