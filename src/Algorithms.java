@@ -112,9 +112,7 @@ public class Algorithms {
 	}
 
 	private int calculateManhattan(Board board){
-		Point uppointGoalPoint=new Point(1, 3);
-		Point downPointGoalPoint=new Point(2, 4);
-		Piece goalPicePosition= new Piece(uppointGoalPoint,downPointGoalPoint);
+		Piece goalPicePosition = board.getGoalPiece();
 		int sumdistance = 0; //calculates distance between  piece in current board and goal board
 		for (Piece i: board.getPieces()){
 			if (goalPicePosition.getPieceType().equals(i.getPieceType())){
