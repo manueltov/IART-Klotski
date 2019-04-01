@@ -14,7 +14,9 @@ public class Algorithms {
 	private long stopTime;
 	private float time;
 	Stack<Node> stack;
-	private PriorityQueue<Node> prioQ;
+	private PriorityQueue<Node> prioQgreedy;
+	private PriorityQueue<Node> prioQaStart;
+
 
 	long mem;
 
@@ -32,10 +34,15 @@ public class Algorithms {
 
 		nodes=new LinkedList<Node>();
 		nodes.add(new Node(originalBoard,0));
+		
 		stack=new Stack<Node>();
 		stack.push(new Node(originalBoard,0));
-		prioQ= new PriorityQueue<Node>(10000, new NodeComparator());
-		prioQ.add(new Node(originalBoard, 0));
+		
+		prioQgreedy= new PriorityQueue<Node>(10000, new NodeComparator());
+		prioQgreedy.add(new Node(originalBoard, 0));
+		
+		prioQaStart= new PriorityQueue<Node>(10000, new NodeComparatorAstart());
+		prioQaStart.add(new Node(originalBoard, 0));
 	}
 
 	public  boolean tryMoveDirection(Point point,String direction) {
@@ -65,9 +72,12 @@ public class Algorithms {
 					numBoard++;
 					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					Node n = new Node(possibleBoard,this.calculateManhattan(possibleBoard));
+					n.setGx(1);
+					n.setFx(n.getGx()+n.getMath());
 					nodes.add(n);
 					stack.push(n);
-					prioQ.add(n);
+					prioQgreedy.add(n);
+					prioQaStart.add(n);
 					boardSeen.add(possibleBoard);
 				}
 			}catch(IllegalStateException e){
@@ -103,6 +113,7 @@ public class Algorithms {
 	private class NodeComparator implements Comparator<Node>{
 		@Override //compares the manhattan distance between two objects for our priority queue
 		public int compare(Node obj1, Node obj2){
+			
 			if (obj1.getMath() > obj2.getMath()){
 				return 1;
 			}else if (obj1.getMath() < obj2.getMath()){
@@ -112,10 +123,28 @@ public class Algorithms {
 			}
 		}
 	}
+	
+	
+	
+	private class NodeComparatorAstart implements Comparator<Node>{
+		@Override //compares the manhattan distance between two objects for our priority queue
+		public int compare(Node obj1, Node obj2){
+			if (obj1.getFx() > obj2.getFx()){
+				return 1;
+			}else if (obj1.getFx() < obj2.getFx()){
+				return -1;
+			}else{
+				return 0;
+			}
+		}
+	}
+
+
 
 	private int calculateManhattan(Board board){
 
 		Piece goalPicePosition= board.getGoalPiece();
+
 		int sumdistance = 0; //calculates distance between  piece in current board and goal board
 		for (Piece i: board.getPieces()){
 			if (goalPicePosition.getPieceType().equals(i.getPieceType())){
@@ -231,12 +260,51 @@ public class Algorithms {
 		startTime = System.currentTimeMillis();
 		moveCount = 0;
 
-		while (!prioQ.isEmpty()){
+		while (!prioQgreedy.isEmpty()){
 			this.findAllPossibleMoves();
 			if(isSolved()) {
 				break;
 			}
-			temp =prioQ.remove(); //takes out board from list
+			temp =prioQgreedy.remove(); //takes out board from list
+			currentBoard = temp.getBoard();
+
+			moveCount++;
+		}
+		stopTime = System.currentTimeMillis();
+		time=(float)(stopTime - startTime)/1000;
+		finalmem=Runtime.getRuntime().freeMemory();
+
+		System.out.println("+---------------------------------+");
+		System.out.println("|    Solve whit Greedy Search     |");
+		System.out.println("+---------------------------------+");
+		System.out.println("move count: " + moveCount);
+		System.out.println("number of boards added to nodes:" + numBoard);
+		System.out.println("final time : " + time+" seconds\n");
+		System.out.println("Greedy Search Find Solution");
+		System.out.println(currentBoard.toString());
+
+		/*System.out.println("Short Moves to Goal State :\n");
+		System.out.println("Moves :"+currentBoard.getMoves().size());
+		System.out.println("(x y)to(x y)\n");
+		System.out.println(currentBoard.displayMoves());
+		System.out.println("Free memory: " +mem);
+		System.out.println("Free final memory: " +finalmem);*/
+	}
+	
+	public void aStartSolver() {
+
+		long finalmem;
+		mem=Runtime.getRuntime().freeMemory();
+
+		startTime = System.currentTimeMillis();
+		moveCount = 0;
+
+		while (!prioQaStart.isEmpty()){
+			this.findAllPossibleMoves();
+			if(isSolved()) {
+				break;
+			}
+			temp =prioQaStart.remove(); //takes out board from list
 			currentBoard = temp.getBoard();
 
 			moveCount++;

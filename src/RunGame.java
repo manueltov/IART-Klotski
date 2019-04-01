@@ -28,9 +28,10 @@ public class RunGame {
         System.out.println("Start Board");
         System.out.println(board.toString());
 
-        a.bfsSolver();
+        //a.bfsSolver();
         //a.dfsSolver();
-        //a.greedySolver();
+        a.greedySolver();
+       // a.aStartSolver();
 
         /*for(Board s : bfs.getseeB()) { 
         	  System.out.println(s.toString()); 
