@@ -37,5 +37,27 @@ public class RunGame {
         /*for(Board s : bfs.getseeB()) { 
         	  System.out.println(s.toString()); 
         	}*/
+
+/*
+        /// GENERATE OUTPUT
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+        for (int i = 1 ; i < 12 ; i++){
+            Board board = Utilities.loadLevel(i);
+            Algorithms a= new Algorithms(board);
+            writer.write("Level: " + i + "\n");
+            writer.write("BFS Solver: \n");
+            a.bfsSolver();
+            writer.write("move count: \n");
+            writer.write(a.getMoveCount() + "\n");
+            writer.write("number of boards added to nodes: \n");
+            writer.write(a.getNumBoard() + "\n");
+            writer.write("final time: \n");
+            writer.write(a.getTime() + "\n");
+        }
+        writer.close();
+    }
+
+    */
     }
 }
