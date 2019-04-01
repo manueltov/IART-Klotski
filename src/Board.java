@@ -32,7 +32,7 @@ public class Board {
 		return goalPiece;
 	}
 
-	public Board(int height, int width, Board parent) {  // constructor for making a board that isn't the initial configuration board
+	public Board(int height, int width, Board parent, Piece goalPiece) {  // constructor for making a board that isn't the initial configuration board
 
 		if (height > 256 || width > 256)
 			throw new IllegalArgumentException("Exceeded maximum allowed configuration for tray size.");
@@ -41,6 +41,8 @@ public class Board {
 
 		boardWidth = width;
 		boardHeight = height;
+
+		this.goalPiece = goalPiece;
 
 		this.boardHeight=height;
 		this.boardWidth=width;
@@ -113,7 +115,7 @@ public class Board {
 			insertPieceBoard(piece);//refill the piece in because we are creating a new Board with the updated piece position  
 			temp.changeOrientation(point, new Point(point.getX() + piece.getWidth()-1, point.getY() + piece.getHeight()-1));
 		}
-		Board board = new Board(boardHeight, boardWidth, this);
+		Board board = new Board(boardHeight, boardWidth, this, goalPiece);
 
 		board.clearPiece(piece);
 		board.insertPieceBoard(temp);
