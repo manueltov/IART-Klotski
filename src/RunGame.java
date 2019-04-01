@@ -12,11 +12,12 @@ public class RunGame {
      * @param args
      */
     public static void main(String[] args) {
-        int maxLevel = 10;
+        int maxLevel = 26;
         int level = 0;
         Scanner sc = new Scanner(System.in);
         while (level < 1 | level > maxLevel) {
             System.out.println("Chose a level between 1 and " + maxLevel + ":");
+            System.out.println("[ ATENTION!!! ]  Don't chose odd level between 12 and " + maxLevel + "  [ ATENTION!!! ]");
             String strlevel = sc.nextLine();
             level = Integer.parseInt(strlevel);
         }
