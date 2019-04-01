@@ -91,6 +91,8 @@ public class Algorithms {
 		return this.boardSeen;
 	}
 
+	
+	
 	public boolean isSolved(){
 		if(currentBoard.getboardMap().containsValue(currentBoard.getGoalPiece())) {
 			return true;
@@ -112,7 +114,8 @@ public class Algorithms {
 	}
 
 	private int calculateManhattan(Board board){
-		Piece goalPicePosition = board.getGoalPiece();
+
+		Piece goalPicePosition= board.getGoalPiece();
 		int sumdistance = 0; //calculates distance between  piece in current board and goal board
 		for (Piece i: board.getPieces()){
 			if (goalPicePosition.getPieceType().equals(i.getPieceType())){
