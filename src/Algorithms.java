@@ -72,8 +72,12 @@ public class Algorithms {
 					numBoard++;
 					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					Node n = new Node(possibleBoard,this.calculateManhattan(possibleBoard));
+					
 					n.setGx(1);
-					n.setFx(n.getGx()+n.getMath());
+					n.setFx(n.getGx()+this.calculateManhattan(possibleBoard));
+					System.out.println(n.getGx());
+					
+					
 					nodes.add(n);
 					stack.push(n);
 					prioQgreedy.add(n);
@@ -127,7 +131,7 @@ public class Algorithms {
 	
 	
 	private class NodeComparatorAstart implements Comparator<Node>{
-		@Override //compares the manhattan distance between two objects for our priority queue
+		@Override //compares the fx=gx+hx  between two objects for our priority queue
 		public int compare(Node obj1, Node obj2){
 			if (obj1.getFx() > obj2.getFx()){
 				return 1;
@@ -154,6 +158,8 @@ public class Algorithms {
 		}
 		return sumdistance;
 	}
+	
+	
 
 	public void findAllPossibleMoves(){
 		HashMap<Point,Piece> currTray = currentBoard.getboardMap(); //our board implementation
@@ -314,12 +320,12 @@ public class Algorithms {
 		finalmem=Runtime.getRuntime().freeMemory();
 
 		System.out.println("+---------------------------------+");
-		System.out.println("|    Solve whit Greedy Search     |");
+		System.out.println("|       Solve whit A* Search      |");
 		System.out.println("+---------------------------------+");
 		System.out.println("move count: " + moveCount);
 		System.out.println("number of boards added to nodes:" + numBoard);
 		System.out.println("final time : " + time+" seconds\n");
-		System.out.println("Greedy Search Find Solution");
+		System.out.println("A* Search Find Solution");
 		System.out.println(currentBoard.toString());
 
 		/*System.out.println("Short Moves to Goal State :\n");

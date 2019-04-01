@@ -29,9 +29,9 @@ public class RunGame {
         System.out.println(board.toString());
 
         //a.bfsSolver();
-        //a.dfsSolver();
-        a.greedySolver();
-       // a.aStartSolver();
+       // a.dfsSolver();
+        //a.greedySolver();
+        a.aStartSolver();
 
         /*for(Board s : bfs.getseeB()) { 
         	  System.out.println(s.toString()); 
