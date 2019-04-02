@@ -46,11 +46,18 @@ public class Algorithms {
 	}
 
 	public  boolean tryMoveDirection(Point point,String direction) {
+		
+		
 		HashMap<Point ,Piece> currentboardMap=currentBoard.getboardMap();
 		Board possibleBoard;
+		
+		
+		
 		if(currentboardMap.containsKey(point)){
 			Point upperLeftPoint=currentboardMap.get(point).getUpperPoint();
 			Point movePoint= new Point(-1, -1);
+			
+			
 			switch (direction) {
 				case "left": movePoint=new Point(upperLeftPoint.getX()-1, upperLeftPoint.getY());
 					break;
@@ -68,20 +75,20 @@ public class Algorithms {
 				}catch (IllegalStateException e){
 					System.out.println(e.getMessage());
 				}
+				
+				
 				if (!boardSeen.contains(possibleBoard)){
 					numBoard++;
-					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
+					System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					Node n = new Node(possibleBoard,this.calculateManhattan(possibleBoard));
 					
-					n.setGx(1);
-					n.setFx(n.getGx()+this.calculateManhattan(possibleBoard));
-					System.out.println(n.getGx());
+					//System.out.println(n.getGx());
 					
-					
-					nodes.add(n);
+					//nodes.add(n);
 					stack.push(n);
-					prioQgreedy.add(n);
-					prioQaStart.add(n);
+					//prioQgreedy.add(n);
+					//prioQaStart.add(n);
+					
 					boardSeen.add(possibleBoard);
 				}
 			}catch(IllegalStateException e){
@@ -132,7 +139,18 @@ public class Algorithms {
 	
 	private class NodeComparatorAstart implements Comparator<Node>{
 		@Override //compares the fx=gx+hx  between two objects for our priority queue
+		
 		public int compare(Node obj1, Node obj2){
+			obj1.setGx(1);
+			obj2.setGx(1);
+			
+			obj1.setFx(obj1.getGx()+obj1.getMath());
+			obj2.setFx(obj2.getGx()+obj2.getMath());
+
+
+
+			
+
 			if (obj1.getFx() > obj2.getFx()){
 				return 1;
 			}else if (obj1.getFx() < obj2.getFx()){
@@ -211,11 +229,11 @@ public class Algorithms {
 		System.out.println("Breadth First Search Find Solution");
 		System.out.println(currentBoard.toString());
 
-		/*System.out.println("Short Moves to Goal State :\n");
+		System.out.println("Short Moves to Goal State :\n");
 		System.out.println("Moves :"+currentBoard.getMoves().size());
 		System.out.println("(x y)to(x y)\n");
 		System.out.println(currentBoard.displayMoves());
-		System.out.println("Free memory: " +mem);
+		/*System.out.println("Free memory: " +mem);
 		System.out.println("Free final memory: " +finalmem);*/
 	}
 
@@ -230,9 +248,10 @@ public class Algorithms {
 		while (!stack.isEmpty()){
 			this.findAllPossibleMoves();
 			if(isSolved()) {
+				System.out.println("asasas");
 				break;
 			}
-			temp =stack.pop(); //takes out board from list
+			temp =stack.pop(); //takes out board from stack
 			currentBoard = temp.getBoard();
 
 			moveCount++;
@@ -250,11 +269,11 @@ public class Algorithms {
 		System.out.println("Deep First Search Find Solution");
 		System.out.println(currentBoard.toString());
 
-		/*System.out.println("Short Moves to Goal State :\n");
+		System.out.println("Short Moves to Goal State :\n");
 		System.out.println("Moves :"+currentBoard.getMoves().size());
 		System.out.println("(x y)to(x y)\n");
 		System.out.println(currentBoard.displayMoves());
-		System.out.println("Free memory: " +mem);
+		/*System.out.println("Free memory: " +mem);
 		System.out.println("Free final memory: " +finalmem);*/
 	}
 
@@ -289,11 +308,11 @@ public class Algorithms {
 		System.out.println("Greedy Search Find Solution");
 		System.out.println(currentBoard.toString());
 
-		/*System.out.println("Short Moves to Goal State :\n");
-		System.out.println("Moves :"+currentBoard.getMoves().size());
+		System.out.println("Short Moves to Goal State :\n");
+		System.out.println("Moves :"+currentBoard.getMoves().size()/3);
 		System.out.println("(x y)to(x y)\n");
 		System.out.println(currentBoard.displayMoves());
-		System.out.println("Free memory: " +mem);
+		/*System.out.println("Free memory: " +mem);
 		System.out.println("Free final memory: " +finalmem);*/
 	}
 	
@@ -328,11 +347,11 @@ public class Algorithms {
 		System.out.println("A* Search Find Solution");
 		System.out.println(currentBoard.toString());
 
-		/*System.out.println("Short Moves to Goal State :\n");
+		System.out.println("Short Moves to Goal State :\n");
 		System.out.println("Moves :"+currentBoard.getMoves().size());
 		System.out.println("(x y)to(x y)\n");
 		System.out.println(currentBoard.displayMoves());
-		System.out.println("Free memory: " +mem);
+		/*System.out.println("Free memory: " +mem);
 		System.out.println("Free final memory: " +finalmem);*/
 	}
 }

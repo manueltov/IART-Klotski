@@ -22,40 +22,28 @@ public class RunGame {
             level = Integer.parseInt(strlevel);
         }
         sc.close();
+        
+        
+        
+        
+        
+        
+        
 
         Board board = Utilities.loadLevel(level);
-        Algorithms a= new Algorithms(board);
+        BreadFristSearch bfs= new BreadFristSearch(board);
+        DeepFristSearch dfs=new DeepFristSearch(board);
+        GreedySearch greedy=new GreedySearch(board);
+        AStartSearch astart=new AStartSearch(board);
 
         System.out.println("Start Board");
         System.out.println(board.toString());
+        //bfs.solver();
+       // dfs.solver();
+       greedy.solver();
+        //astart.solver();
 
-        //a.bfsSolver();
-       // a.dfsSolver();
-        //a.greedySolver();
-        a.aStartSolver();
-
-        /*for(Board s : bfs.getseeB()) { 
-        	  System.out.println(s.toString()); 
-        	}*/
-
-/*
-        /// GENERATE OUTPUT
-
-        BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
-        for (int i = 1 ; i < 12 ; i++){
-            Board board = Utilities.loadLevel(i);
-            Algorithms a= new Algorithms(board);
-            writer.write("Level: " + i + "\n");
-            writer.write("BFS Solver: \n");
-            a.bfsSolver();
-            writer.write("move count: \n");
-            writer.write(a.getMoveCount() + "\n");
-            writer.write("number of boards added to nodes: \n");
-            writer.write(a.getNumBoard() + "\n");
-            writer.write("final time: \n");
-            writer.write(a.getTime() + "\n");
-        }
-        writer.close();
+      
     }
 
     */

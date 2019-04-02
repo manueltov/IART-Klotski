@@ -8,7 +8,7 @@ public class Node {
 		myBoard = b;
 		visited=false;
 		manhatdis=ms;
-		gx=0;
+		gx=1;
 		fx=0;
 		
 		
@@ -44,7 +44,7 @@ public class Node {
 	}
 	
 	public int getGx() {
-		return gx;
+		return myBoard.getG();
 	}
 	
 	public void setFx(int f) {

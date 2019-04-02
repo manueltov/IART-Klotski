@@ -11,6 +11,7 @@ public class Board {
 	private ArrayList<String> moves;
 	private HashSet<Piece> pieces;
 	private boolean isvalid;
+	private int g;
 
 	public Board(int height, int width, Piece goalPiece) {
 
@@ -25,11 +26,20 @@ public class Board {
 		this.boardMap=new HashMap<Point, Piece>();
 		this.moves=new ArrayList<String>();
 		this.pieces=new HashSet<Piece>();
-		this.isvalid=false;
+		this.g=0;
+		
 	}
 
 	public Piece getGoalPiece() {
 		return goalPiece;
+	}
+	
+	public int getG() {
+		return g;
+	}
+	
+	public void setG(int num) {
+		this.g=this.g+num;
 	}
 
 	public Board(int height, int width, Board parent, Piece goalPiece) {  // constructor for making a board that isn't the initial configuration board
@@ -44,16 +54,19 @@ public class Board {
 
 		this.goalPiece = goalPiece;
 
+		this.g=parent.getG();
+		
 		this.boardHeight=height;
 		this.boardWidth=width;
 		this.boardMap=new HashMap<Point, Piece>();
 		this.moves=new ArrayList<String>();
 		this.pieces=new HashSet<Piece>();
-		this.isvalid=false;
+	
 		this.goalPiece=goalPiece;
 
 		pieces.addAll(parent.pieces);
 		moves.addAll(parent.moves);
+		//System.out.println(moves.size());
 
 		if (parent.boardMap != null) {
 			boardMap.putAll(parent.boardMap);
@@ -118,7 +131,7 @@ public class Board {
 		}
 
 
-		Board board = new Board(boardHeight, boardWidth, this,goalPiece);
+		Board board = new Board(boardHeight, boardWidth, this, goalPiece);
 
 
 
@@ -128,7 +141,7 @@ public class Board {
 
 		String moveMade = "("+Integer.toString(piece.getUpperPoint().getX()) + " " +  Integer.toString(piece.getUpperPoint().getY()) + ")"+ "->"+ "("+Integer.toString(point.getX()) + " " + Integer.toString(point.getY())+")";
 		board.moves.add(moveMade);
-		//toString();
+		//System.out.println(moveMade);
 		return board;
 	}
 
