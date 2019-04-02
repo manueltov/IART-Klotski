@@ -30,13 +30,13 @@ public class AStartSearch {
 		this.stopTime=0;
 		this.time=0;
 
-		boardSeen = new HashSet<Board>();
+		this.boardSeen = new HashSet<Board>();
 		
-		boardSeen.add(stardBoard);
+		this.boardSeen.add(stardBoard);
 		
 
-		nodes= new PriorityQueue<Node>(10000, new NodeComparatorAstart());
-		nodes.add(new Node(originalBoard, 0));
+		this.nodes= new PriorityQueue<Node>(10000, new NodeComparatorAstart());
+		this.nodes.add(new Node(originalBoard));
 
 	}
 	
@@ -51,11 +51,14 @@ public class AStartSearch {
 			System.out.println(obj1.getFx());
 
 			
+<<<<<<< refs/remotes/origin/master
 			obj1.setFx(obj1.getGx()+obj1.getMath());
 			obj2.setFx(obj2.getGx()+obj2.getMath());
 			System.out.println(obj1.getFx());
 			System.out.println(obj2.getFx());
 
+=======
+>>>>>>> update
 
 
 
@@ -72,19 +75,7 @@ public class AStartSearch {
 		}
 	}
 	
-	private int calculateManhattan(Board board){
-
-		Piece goalPicePosition= board.getGoalPiece();
-
-		int sumdistance = 0; //calculates distance between  piece in current board and goal board
-		for (Piece i: board.getPieces()){
-			if ((goalPicePosition.getPieceType().equals(i.getPieceType()))){
-				sumdistance += Math.abs((i.getUpperPoint().getX() - goalPicePosition.getUpperPoint().getX()));
-				sumdistance += Math.abs((i.getUpperPoint().getY() - goalPicePosition.getUpperPoint().getY()));
-			}
-		}
-		return sumdistance;
-	}
+	
 
 	public  boolean tryMoveDirection(Point point,String direction) {
 
@@ -112,9 +103,10 @@ public class AStartSearch {
 			}
 			try {
 				possibleBoard=currentBoard.makeMove(currentboardMap.get(point),movePoint);
+				
 				try{
 					possibleBoard.isOK();
-				}catch (IllegalStateException e){
+				}catch (IllegalStateException e){ 
 					System.out.println(e.getMessage());
 				}
 
@@ -122,14 +114,22 @@ public class AStartSearch {
 				if (!boardSeen.contains(possibleBoard)){
 					
 					numBoard++;
-					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					
+<<<<<<< refs/remotes/origin/master
 					
 					Node n = new Node(possibleBoard,this.calculateManhattan(possibleBoard));
 					
 					
+=======
+					Node n = new Node(possibleBoard);
+					n.setGx(possibleBoard.getGx());
+					n.setMath(possibleBoard.calculateManhattan());
+					n.setFx(n.getGx()+n.getMath());
+					 
+>>>>>>> update
 					nodes.add(n);
-
+			
+				
 
 					boardSeen.add(possibleBoard);
 				}
@@ -183,19 +183,29 @@ public class AStartSearch {
 	public void solver(){
 		
 		startTime = System.currentTimeMillis();
+		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		moveCount = 0;
+<<<<<<< refs/remotes/origin/master
+=======
+		
+>>>>>>> update
 
 
 
 		while (!nodes.isEmpty()){
+<<<<<<< refs/remotes/origin/master
+=======
+			
+>>>>>>> update
 			this.findAllPossibleMoves();
 			if(isSolved()) {
 				break;
 			}
-			
+		
 			
 			temp =nodes.remove(); //takes out board from list
 			currentBoard = temp.getBoard();
+<<<<<<< refs/remotes/origin/master
 			//currentBoard.setG(1);
 			//System.out.println(temp.getBoard().toString());
 
@@ -203,24 +213,36 @@ public class AStartSearch {
 
 			moveCount++;
 		}
+=======
+
+			moveCount++;
+			
+		}
+		
+		
+		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+>>>>>>> update
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - startTime)/1000;
+		long actualMemUsed=afterUsedMem-beforeUsedMem;
 	
 		
 		
 		System.out.println("+---------------------------------+");
 		System.out.println("|     Solve whit A* First Search  |");
-		System.out.println("+---------------------------------+");
+		System.out.println("+---------------------------------+\n");
 		System.out.println("move count: " + moveCount);
-		System.out.println("number of boards added to nodes:" + numBoard);
+		System.out.println("number of boards added to nodes: " + numBoard);
+		System.out.println("menory usage: "+actualMemUsed/1024/1024+" MB");
 		System.out.println("final time : " + time+" seconds\n");
+		
+		
 		System.out.println("A* Find Solution");
+		System.out.println("Short Moves to Goal State : "+currentBoard.getMoves().size());
 		System.out.println(currentBoard.toString());
 
-		System.out.println("Short Moves to Goal State :\n");
-		System.out.println("Moves :"+currentBoard.getMoves().size());
-		System.out.println("(x y)to(x y)\n");
-		System.out.println(currentBoard.displayMoves());
+		
+		
 		
 	}
 
@@ -231,7 +253,7 @@ public class AStartSearch {
 		return currentBoard;
 	}
 
-	public Queue<Node>getNodes(){
+	public PriorityQueue<Node> getNodes(){
 		return this.nodes;
 	}
 

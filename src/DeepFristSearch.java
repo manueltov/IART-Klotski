@@ -14,7 +14,7 @@ public class DeepFristSearch {
 	private int numBoard;
 	private long startTime;
 	private long stopTime;
-	private float time;
+	private float time; 
 
 
 
@@ -22,7 +22,7 @@ public class DeepFristSearch {
 		this.originalBoard=stardBoard;
 		this.currentBoard=stardBoard;
 
-		this.numBoard=0;
+		this.numBoard=0; 
 		this.startTime=0;
 		this.stopTime=0;
 		this.time=0;
@@ -31,7 +31,7 @@ public class DeepFristSearch {
 		boardSeen.add(stardBoard);
 
 		nodes=new Stack<Node>();
-		nodes.push(new Node(originalBoard,0));
+		nodes.push(new Node(originalBoard));
 
 	}
 
@@ -76,7 +76,7 @@ public class DeepFristSearch {
 					numBoard++;
 					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					
-					Node n = new Node(possibleBoard,0);
+					Node n = new Node(possibleBoard);
 
 					nodes.push(n);
 					
@@ -141,6 +141,7 @@ public class DeepFristSearch {
 		startTime = System.currentTimeMillis();
 		moveCount = 0;
 		numBoard=0;
+		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 
 
 
@@ -161,24 +162,28 @@ public class DeepFristSearch {
 
 			moveCount++;
 		}
+		
+		
+		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - startTime)/1000;
+		long actualMemUsed=afterUsedMem-beforeUsedMem;
 	
 		
-		
+		 
 		System.out.println("+---------------------------------+");
 		System.out.println("|   Solve whit Deep First Search  |");
-		System.out.println("+---------------------------------+");
+		System.out.println("+---------------------------------+\n");
+		
 		System.out.println("move count: " + moveCount);
-		System.out.println("number of boards added to nodes:" + numBoard);
+		System.out.println("number of boards added to nodes: " + numBoard);
+		System.out.println("menory usage: "+actualMemUsed/1024/1024+" MB");
 		System.out.println("final time : " + time+" seconds\n");
-		System.out.println("Deph First Search Find Solution");
+		
+		
+		System.out.println("Find Solution");
+		System.out.println("Short Moves to Goal State : "+currentBoard.getMoves().size());
 		System.out.println(currentBoard.toString());
-
-		System.out.println("Short Moves to Goal State :\n");
-		System.out.println("Moves :"+currentBoard.getMoves().size());
-		System.out.println("(x y)to(x y)\n");
-		System.out.println(currentBoard.displayMoves());
 		
 	}
 

@@ -27,13 +27,13 @@ public class BreadFristSearch {
 		this.numBoard=0;
 		this.startTime=0;
 		this.stopTime=0;
-		this.time=0;
+		this.time=0; 
 
 		boardSeen = new HashSet<Board>();
 		boardSeen.add(stardBoard);
 
 		nodes=new LinkedList<Node>();
-		nodes.add(new Node(originalBoard,0));
+		nodes.add(new Node(originalBoard));
 
 	}
 
@@ -41,7 +41,7 @@ public class BreadFristSearch {
 
 
 		HashMap<Point ,Piece> currentboardMap=currentBoard.getboardMap();
-		Board possibleBoard;
+		Board possibleBoard; 
 
 
 
@@ -75,7 +75,7 @@ public class BreadFristSearch {
 					numBoard++;
 					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					
-					Node n = new Node(possibleBoard,0);
+					Node n = new Node(possibleBoard);
 
 
 					nodes.add(n);
@@ -134,6 +134,7 @@ public class BreadFristSearch {
 		
 		startTime = System.currentTimeMillis();
 		moveCount = 0;
+		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 
 
 
@@ -149,24 +150,26 @@ public class BreadFristSearch {
 
 			moveCount++;
 		}
+		
+		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - startTime)/1000;
-	
+		long actualMemUsed=afterUsedMem-beforeUsedMem;
 		
+	
 		
 		System.out.println("+---------------------------------+");
 		System.out.println("| Solve whit Breadth First Search |");
-		System.out.println("+---------------------------------+");
+		System.out.println("+---------------------------------+\n");
 		System.out.println("move count: " + moveCount);
-		System.out.println("number of boards added to nodes:" + numBoard);
+		System.out.println("number of boards added to nodes: " + numBoard);
+		System.out.println("menory usage: "+actualMemUsed/1024/1024+" MB");
 		System.out.println("final time : " + time+" seconds\n");
-		System.out.println("Breadth First Search Find Solution");
+		
+		
+		System.out.println("Find Solution");
+		System.out.println("Short Moves to Goal State : "+currentBoard.getMoves().size());
 		System.out.println(currentBoard.toString());
-
-		System.out.println("Short Moves to Goal State :\n");
-		System.out.println("Moves :"+currentBoard.getMoves().size());
-		System.out.println("(x y)to(x y)\n");
-		System.out.println(currentBoard.displayMoves());
 		
 	}
 

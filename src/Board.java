@@ -54,7 +54,11 @@ public class Board {
 
 		this.goalPiece = goalPiece;
 
+<<<<<<< refs/remotes/origin/master
 		this.g=parent.getG();
+=======
+		this.gx=parent.getGx()+1;
+>>>>>>> update
 		
 		this.boardHeight=height;
 		this.boardWidth=width;
@@ -93,6 +97,21 @@ public class Board {
 		}
 	}
 
+	
+	public int calculateManhattan(){
+
+		Piece goalPicePosition= this.getGoalPiece();
+
+		int sumdistance = 0; //calculates distance between  piece in current board and goal board
+		for (Piece i: this.getPieces()){
+			if ((goalPicePosition.getPieceType().equals(i.getPieceType()))){
+				sumdistance += Math.abs((i.getUpperPoint().getX() - goalPicePosition.getUpperPoint().getX()));
+				sumdistance += Math.abs((i.getUpperPoint().getY() - goalPicePosition.getUpperPoint().getY()));
+			}
+		}
+		return sumdistance;
+	}
+	
 	public boolean validMove(Piece piece, Point point) {  //checks  is the new point   is a valid move 
 
 		point.validatePoint();

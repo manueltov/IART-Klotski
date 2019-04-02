@@ -19,7 +19,11 @@ public class GreedySearch {
 	private long stopTime;
 	private float time;
 
+<<<<<<< refs/remotes/origin/master
 
+=======
+  
+>>>>>>> update
 
 	public GreedySearch(Board stardBoard) {
 		this.originalBoard=stardBoard;
@@ -36,7 +40,7 @@ public class GreedySearch {
 		
 
 		nodes= new PriorityQueue<Node>(10000, new NodeComparator());
-		nodes.add(new Node(originalBoard, 0));
+		nodes.add(new Node(originalBoard));
 
 	}
 	
@@ -110,7 +114,8 @@ public class GreedySearch {
 					numBoard++;
 					System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					
-					Node n = new Node(possibleBoard,this.calculateManhattan(possibleBoard));
+					Node n = new Node(possibleBoard);
+					n.setMath(possibleBoard.calculateManhattan());
 	
 
 					nodes.add(n);
@@ -170,6 +175,7 @@ public class GreedySearch {
 		
 		startTime = System.currentTimeMillis();
 		moveCount = 0;
+		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 
 
 
@@ -188,24 +194,27 @@ public class GreedySearch {
 
 			moveCount++;
 		}
+		
+		
+		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - startTime)/1000;
+		long actualMemUsed=afterUsedMem-beforeUsedMem;
 	
 		
 		
 		System.out.println("+---------------------------------+");
 		System.out.println("| Solve whit Greedy First Search  |");
-		System.out.println("+---------------------------------+");
+		System.out.println("+---------------------------------+\n");
 		System.out.println("move count: " + moveCount);
-		System.out.println("number of boards added to nodes:" + numBoard);
+		System.out.println("number of boards added to nodes: " + numBoard);
+		System.out.println("menory usage: "+actualMemUsed/1024/1024+" MB");
 		System.out.println("final time : " + time+" seconds\n");
-		System.out.println("Greedy Search Find Solution");
+		
+		
+		System.out.println("Find Solution");
+		System.out.println("Short Moves to Goal State : "+currentBoard.getMoves().size());
 		System.out.println(currentBoard.toString());
-
-		System.out.println("Short Moves to Goal State :\n");
-		System.out.println("Moves :"+currentBoard.getMoves().size());
-		System.out.println("(x y)to(x y)\n");
-		System.out.println(currentBoard.displayMoves());
 		
 	}
 
