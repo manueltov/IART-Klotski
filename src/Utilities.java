@@ -1,5 +1,8 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,9 +62,54 @@ public class Utilities {
             numbers[i++] = num;
         return numbers;
     }
+<<<<<<< refs/remotes/origin/master
 }
 
 
 
 
 
+=======
+
+    public static void writeFiles () throws IOException {
+    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("moveCount.txt"));
+        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("numOfBoards.txt"));
+        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("memoryUsage.txt"));
+        BufferedWriter writertime = new BufferedWriter(new FileWriter("time.txt"));
+    	for (int i = 1 ; i <= 50 ; i++){
+        	System.out.println("level " + i);
+            Board board = Utilities.loadLevel(i);
+            BreadFristSearch bfs = new BreadFristSearch(board);
+            bfs.solver();
+            writeFileAux("moveCount.txt", writermoveCount, bfs);
+            writeFileAux("numOfBoards.txt", writernumOfBoards, bfs);
+            writeFileAux("memoryUsage.txt", writermemoryUsage, bfs);
+            writeFileAux("time.txt", writertime, bfs);
+        }
+    	writermoveCount.close();
+    	writernumOfBoards.close();
+    	writermemoryUsage.close();
+    	writertime.close();
+    }
+    
+    private static void writeFileAux (String fileName, BufferedWriter writer, BreadFristSearch bfs) throws IOException {
+    	switch (fileName) {
+    		case "moveCount.txt":
+    			writer.append(bfs.getMoveCount() + "\n");
+    	        break;
+	    	
+    		case "numOfBoards.txt":
+    			writer.append(bfs.getNumBoard() + "\n");
+    	        break;
+    		
+    		case "memoryUsage.txt":
+    			writer.append(bfs.getNumBoard() + "\n");
+    	        break;
+    		
+    		case "time.txt":
+    			writer.append(bfs.getActualMemUsed() + "\n");
+		        break;
+    	}
+    }
+}
+>>>>>>> update

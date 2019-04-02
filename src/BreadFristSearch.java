@@ -17,7 +17,7 @@ public class BreadFristSearch {
 	private long startTime;
 	private long stopTime;
 	private float time;
-
+	private long actualMemUsed;
 
 
 	public BreadFristSearch(Board stardBoard) {
@@ -154,7 +154,7 @@ public class BreadFristSearch {
 		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - startTime)/1000;
-		long actualMemUsed=afterUsedMem-beforeUsedMem;
+		this.actualMemUsed = afterUsedMem-beforeUsedMem;
 		
 	
 		
@@ -188,10 +188,19 @@ public class BreadFristSearch {
 		return this.boardSeen;
 	}
 
+	public int getMoveCount() {
+		return moveCount;
+	}
 
+	public int getNumBoard() {
+		return numBoard;
+	}
 
-
-
-
-
+	public float getTime() {
+		return time;
+	}
+	
+	public float getActualMemUsed() {
+		return actualMemUsed;
+	}
 }
