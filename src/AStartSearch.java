@@ -261,9 +261,22 @@ public class AStartSearch {
 		return this.boardSeen;
 	}
 
+	public int getMoveCount() {
+		return moveCount;
+	}
 
+	public int getNumBoard() {
+		return numBoard;
+	}
 
-
+	//TODO
+	public float getActualMemUsed() {
+		return 0;
+	}
 	
+	//TODO
+	public float getTime() {
+		return 0;
+	}
 
 }

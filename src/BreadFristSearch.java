@@ -33,7 +33,7 @@ public class BreadFristSearch {
 		boardSeen.add(stardBoard);
 
 		nodes=new LinkedList<Node>();
-		nodes.add(new Node(originalBoard));
+		nodes.add(new Node(stardBoard));
 
 	}
 

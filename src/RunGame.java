@@ -61,22 +61,17 @@ public class RunGame {
 	 */
 	public static void main(String[] args) throws IOException {
 		
-		int level = 0; 
-		int maxLevel = 50;
-		Scanner sc = new Scanner(System.in);
-		while (level < 1 | level > maxLevel) {
-			System.out.println("Chose a level between 1 and " + maxLevel + ":");
-			String strlevel = sc.nextLine();
-			level = Integer.parseInt(strlevel);
-		}
-		sc.close();
-
+		//TO GENERATE FILES
 		
+		//Utilities.writeFilesBFS();
+		//Utilities.writeFilesDFS();
+		//Utilities.writeFilesGreedy();
+		//Utilities.writeFilesAStartSearch();
 		
-		//Utilities.writeFiles();
+		/*
+		//TO USE THE USER INTERFACE
+		int level = Utilities.levelUserInterface();	
 		
-		
-		 
 		Board board = Utilities.loadLevel(level);
 		BreadFristSearch bfs= new BreadFristSearch(board);
 		DeepFristSearch dfs=new DeepFristSearch(board);
@@ -90,6 +85,8 @@ public class RunGame {
 		//dfs.solver();
 		//greedy.solver();
 		//astart.solver();
+      	
+      	*/
       	}
 <<<<<<< refs/remotes/origin/master
 

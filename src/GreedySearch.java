@@ -18,6 +18,7 @@ public class GreedySearch {
 	private long startTime;
 	private long stopTime;
 	private float time;
+	private float actualMemUsed;
 
 <<<<<<< refs/remotes/origin/master
 
@@ -177,31 +178,24 @@ public class GreedySearch {
 		moveCount = 0;
 		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 
-
-
 		while (!nodes.isEmpty()){
-			
 			
 			this.findAllPossibleMoves();
 			
 			if(isSolved()) {
 				break;
 			}
-			
-			
+					
 			temp =nodes.remove(); //takes out board from list
 			currentBoard = temp.getBoard();
 
 			moveCount++;
-		}
-		
+		}		
 		
 		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - startTime)/1000;
-		long actualMemUsed=afterUsedMem-beforeUsedMem;
-	
-		
+		actualMemUsed = afterUsedMem-beforeUsedMem;	
 		
 		System.out.println("+---------------------------------+");
 		System.out.println("| Solve whit Greedy First Search  |");
@@ -218,9 +212,6 @@ public class GreedySearch {
 		
 	}
 
-
-
-
 	public Board getCurrBoard() {
 		return currentBoard;
 	}
@@ -233,10 +224,19 @@ public class GreedySearch {
 		return this.boardSeen;
 	}
 
+	public int getMoveCount() {
+		return moveCount;
+	}
 
+	public int getNumBoard() {
+		return numBoard;
+	}
 
+	public float getActualMemUsed() {
+		return actualMemUsed;
+	}
 
-	
-	
-
+	public float getTime() {
+		return time;
+	}
 }

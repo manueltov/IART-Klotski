@@ -62,29 +62,37 @@ public class Utilities {
             numbers[i++] = num;
         return numbers;
     }
-<<<<<<< refs/remotes/origin/master
-}
+    
+    public static int levelUserInterface() {
+		int level = 0;
+		int maxLevel = 50;
+		Scanner sc = new Scanner(System.in);
+		while (level < 1 | level > maxLevel) {
+			System.out.println("Chose a level between 1 and " + maxLevel + ":");
+			String strlevel = sc.nextLine();
+			level = Integer.parseInt(strlevel);
+		}
+		sc.close();
+		return level;
+	}
 
-
-
-
-
-=======
-
-    public static void writeFiles () throws IOException {
-    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("moveCount.txt"));
-        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("numOfBoards.txt"));
-        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("memoryUsage.txt"));
-        BufferedWriter writertime = new BufferedWriter(new FileWriter("time.txt"));
-    	for (int i = 1 ; i <= 50 ; i++){
+    // --------------------------------
+    //  BFS
+    // --------------------------------
+    public static void writeFilesBFS () throws IOException {
+    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("BFSmoveCount.txt"));
+        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("BFSnumOfBoards.txt"));
+        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("BFSmemoryUsage.txt"));
+        BufferedWriter writertime = new BufferedWriter(new FileWriter("BFStime.txt"));
+    	for (int i = 1 ; i <= 46 ; i++){
         	System.out.println("level " + i);
             Board board = Utilities.loadLevel(i);
             BreadFristSearch bfs = new BreadFristSearch(board);
             bfs.solver();
-            writeFileAux("moveCount.txt", writermoveCount, bfs);
-            writeFileAux("numOfBoards.txt", writernumOfBoards, bfs);
-            writeFileAux("memoryUsage.txt", writermemoryUsage, bfs);
-            writeFileAux("time.txt", writertime, bfs);
+            writeFileAuxBFS("BFSmoveCount.txt", writermoveCount, bfs);
+            writeFileAuxBFS("BFSnumOfBoards.txt", writernumOfBoards, bfs);
+            writeFileAuxBFS("BFSmemoryUsage.txt", writermemoryUsage, bfs);
+            writeFileAuxBFS("BFStime.txt", writertime, bfs);
         }
     	writermoveCount.close();
     	writernumOfBoards.close();
@@ -92,22 +100,156 @@ public class Utilities {
     	writertime.close();
     }
     
-    private static void writeFileAux (String fileName, BufferedWriter writer, BreadFristSearch bfs) throws IOException {
+    private static void writeFileAuxBFS (String fileName, BufferedWriter writer, BreadFristSearch bfs) throws IOException {
     	switch (fileName) {
-    		case "moveCount.txt":
+    		case "BFSmoveCount.txt":
     			writer.append(bfs.getMoveCount() + "\n");
     	        break;
 	    	
-    		case "numOfBoards.txt":
+    		case "BFSnumOfBoards.txt":
     			writer.append(bfs.getNumBoard() + "\n");
     	        break;
     		
-    		case "memoryUsage.txt":
-    			writer.append(bfs.getNumBoard() + "\n");
-    	        break;
-    		
-    		case "time.txt":
+    		case "BFSmemoryUsage.txt":
     			writer.append(bfs.getActualMemUsed() + "\n");
+    	        break;
+    		
+    		case "BFStime.txt":
+    			writer.append(bfs.getTime() + "\n");
+		        break;
+    	}
+    }
+	
+	// --------------------------------
+    //  DFS
+    // --------------------------------
+    public static void writeFilesDFS () throws IOException {
+    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("DFSmoveCount.txt"));
+        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("DFSnumOfBoards.txt"));
+        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("DFSmemoryUsage.txt"));
+        BufferedWriter writertime = new BufferedWriter(new FileWriter("DFStime.txt"));
+    	for (int i = 1 ; i <= 46 ; i++){
+        	System.out.println("level " + i);
+            Board board = Utilities.loadLevel(i);
+            DeepFristSearch dfs=new DeepFristSearch(board);
+            dfs.solver();
+            writeFileAuxDFS("DFSmoveCount.txt", writermoveCount, dfs);
+            writeFileAuxDFS("DFSnumOfBoards.txt", writernumOfBoards, dfs);
+            writeFileAuxDFS("DFSmemoryUsage.txt", writermemoryUsage, dfs);
+            writeFileAuxDFS("DFStime.txt", writertime, dfs);
+        }
+    	writermoveCount.close();
+    	writernumOfBoards.close();
+    	writermemoryUsage.close();
+    	writertime.close();
+    }
+    
+    private static void writeFileAuxDFS (String fileName, BufferedWriter writer, DeepFristSearch dfs) throws IOException {
+    	switch (fileName) {
+    		case "DFSmoveCount.txt":
+    			writer.append(dfs.getMoveCount() + "\n");
+    	        break;
+	    	
+    		case "DFSnumOfBoards.txt":
+    			writer.append(dfs.getNumBoard() + "\n");
+    	        break;
+    		
+    		case "DFSmemoryUsage.txt":
+    			writer.append(dfs.getActualMemUsed() + "\n");
+    	        break;
+    		
+    		case "DFStime.txt":
+    			writer.append(dfs.getTime() + "\n");
+		        break;
+    	}
+    }
+    
+    
+    // --------------------------------
+    //  Greedy
+    // --------------------------------
+    public static void writeFilesGreedy () throws IOException {
+    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("GreedymoveCount.txt"));
+        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("GreedynumOfBoards.txt"));
+        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("GreedymemoryUsage.txt"));
+        BufferedWriter writertime = new BufferedWriter(new FileWriter("Greedytime.txt"));
+    	for (int i = 1 ; i <= 46 ; i++){
+        	System.out.println("level " + i);
+            Board board = Utilities.loadLevel(i);
+            GreedySearch greedy = new GreedySearch(board);
+            greedy.solver();
+            writeFileAuxGreedy("GreedymoveCount.txt", writermoveCount, greedy);
+            writeFileAuxGreedy("GreedynumOfBoards.txt", writernumOfBoards, greedy);
+            writeFileAuxGreedy("GreedymemoryUsage.txt", writermemoryUsage, greedy);
+            writeFileAuxGreedy("Greedytime.txt", writertime, greedy);
+        }
+    	writermoveCount.close();
+    	writernumOfBoards.close();
+    	writermemoryUsage.close();
+    	writertime.close();
+    }
+    
+    private static void writeFileAuxGreedy (String fileName, BufferedWriter writer, GreedySearch greedy) throws IOException {
+    	switch (fileName) {
+    		case "GreedymoveCount.txt":
+    			writer.append(greedy.getMoveCount() + "\n");
+    	        break;
+	    	
+    		case "GreedynumOfBoards.txt":
+    			writer.append(greedy.getNumBoard() + "\n");
+    	        break;
+    		
+    		case "GreedymemoryUsage.txt":
+    			writer.append(greedy.getActualMemUsed() + "\n");
+    	        break;
+    		
+    		case "Greedytime.txt":
+    			writer.append(greedy.getTime() + "\n");
+		        break;
+    	}
+    }
+    
+
+    // --------------------------------
+    //  AStartSearch
+    // --------------------------------
+    public static void writeFilesAStartSearch () throws IOException {
+    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("AStartSearchmoveCount.txt"));
+        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("AStartSearchnumOfBoards.txt"));
+        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("AStartSearchmemoryUsage.txt"));
+        BufferedWriter writertime = new BufferedWriter(new FileWriter("AStartSearchtime.txt"));
+    	for (int i = 1 ; i <= 46 ; i++){
+        	System.out.println("level " + i);
+            Board board = Utilities.loadLevel(i);
+    		AStartSearch astart=new AStartSearch(board);
+    		astart.solver();
+    		writeFileAuxAStartSearch("AStartSearchmoveCount.txt", writermoveCount, astart);
+    		writeFileAuxAStartSearch("AStartSearchnumOfBoards.txt", writernumOfBoards, astart);
+    		writeFileAuxAStartSearch("AStartSearchmemoryUsage.txt", writermemoryUsage, astart);
+    		writeFileAuxAStartSearch("AStartSearchtime.txt", writertime, astart);
+        }
+    	writermoveCount.close();
+    	writernumOfBoards.close();
+    	writermemoryUsage.close();
+    	writertime.close();
+    }
+    
+    private static void writeFileAuxAStartSearch (String fileName, BufferedWriter writer, AStartSearch astart) throws IOException {
+    	switch (fileName) {
+    		case "AStartSearchmoveCount.txt":
+    			writer.append(astart.getMoveCount() + "\n");
+    	        break;
+	    	
+    		case "AStartSearchnumOfBoards.txt":
+    			writer.append(astart.getNumBoard() + "\n");
+    	        break;
+    		
+    		case "AStartSearchmemoryUsage.txt":
+    			writer.append(astart.getActualMemUsed() + "\n");
+    	        break;
+    		
+    		case "AStartSearchtime.txt":
+    			writer.append(astart.getTime() + "\n");
 		        break;
     	}
     }

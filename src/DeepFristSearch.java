@@ -14,7 +14,8 @@ public class DeepFristSearch {
 	private int numBoard;
 	private long startTime;
 	private long stopTime;
-	private float time; 
+	private float time;
+	private float actualMemUsed; 
 
 
 
@@ -167,7 +168,7 @@ public class DeepFristSearch {
 		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - startTime)/1000;
-		long actualMemUsed=afterUsedMem-beforeUsedMem;
+		actualMemUsed = afterUsedMem-beforeUsedMem;
 	
 		
 		 
@@ -200,6 +201,22 @@ public class DeepFristSearch {
 
 	public  HashSet<Board> getseeB(){
 		return this.boardSeen;
+	}
+
+	public int getMoveCount() {
+		return moveCount;
+	}
+
+	public int getNumBoard() {
+		return numBoard;
+	}
+
+	public float getActualMemUsed() {
+		return actualMemUsed;
+	}
+
+	public float getTime() {
+		return time;
 	}
 
 
