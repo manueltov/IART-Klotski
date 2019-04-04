@@ -107,7 +107,7 @@ public class GreedySearch {
 				if (!boardSeen.contains(possibleBoard)){
 					
 					numBoard++;
-					System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
+					//System.out.println("new piece positions in board to be searched: " + "\n" + possibleBoard);
 					
 					Node n = new Node(possibleBoard);
 					n.setMath(possibleBoard.calculateManhattan());

@@ -5,13 +5,13 @@ import java.util.HashSet;
 public class Board {
 
 	private HashMap<Point, Piece>boardMap;
-	private int boardWidth;
+	private int boardWidth; 
 	private int boardHeight;
 	private Piece goalPiece;
 	private ArrayList<String> moves;
 	private HashSet<Piece> pieces;
 	private boolean isvalid;
-	private int g;
+	private int gx;
 
 	public Board(int height, int width, Piece goalPiece) {
 
@@ -26,7 +26,7 @@ public class Board {
 		this.boardMap=new HashMap<Point, Piece>();
 		this.moves=new ArrayList<String>();
 		this.pieces=new HashSet<Piece>();
-		this.g=0;
+		this.gx=0;
 		
 	}
 
@@ -34,12 +34,12 @@ public class Board {
 		return goalPiece;
 	}
 	
-	public int getG() {
-		return g;
+	public int getGx() {
+		return gx;
 	}
 	
-	public void setG(int num) {
-		this.g=this.g+num;
+	public void setGx(int num) {
+		this.gx=num;
 	}
 
 	public Board(int height, int width, Board parent, Piece goalPiece) {  // constructor for making a board that isn't the initial configuration board
@@ -54,11 +54,7 @@ public class Board {
 
 		this.goalPiece = goalPiece;
 
-<<<<<<< refs/remotes/origin/master
-		this.g=parent.getG();
-=======
 		this.gx=parent.getGx()+1;
->>>>>>> update
 		
 		this.boardHeight=height;
 		this.boardWidth=width;
@@ -286,18 +282,3 @@ public class Board {
 		return true;
 	}
 }
-
-        public String displayMoves () { //prints all the moves made previously to get to this board in myMoves
-            String allMoves = "";
-            for (int i = 0; i < moves.size(); i++) {
-                allMoves += moves.get(i);
-                allMoves += "\n";
-            }
-            return allMoves;
-        }
-
-        public boolean getisValid () {
-            // TODO Auto-generated method stub
-            return this.isvalid;
-        }
-    }

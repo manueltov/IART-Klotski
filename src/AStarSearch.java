@@ -45,24 +45,6 @@ public class AStarSearch {
 		@Override //compares the fx=gx+hx  between two objects for our priority queue
 		
 		public int compare(Node obj1, Node obj2){
-			//obj1.setGx(1);
-			//obj2.setGx(1);
-			//
-			System.out.println(obj1.getFx());
-
-			
-<<<<<<< refs/remotes/origin/master
-			obj1.setFx(obj1.getGx()+obj1.getMath());
-			obj2.setFx(obj2.getGx()+obj2.getMath());
-			System.out.println(obj1.getFx());
-			System.out.println(obj2.getFx());
-
-=======
->>>>>>> update
-
-
-
-
 			
 
 			if (obj1.getFx() > obj2.getFx()){
@@ -86,7 +68,7 @@ public class AStarSearch {
 
 
 		if(currentboardMap.containsKey(point)){
-			
+			 
 			Point upperLeftPoint=currentboardMap.get(point).getUpperPoint();
 			Point movePoint= new Point(-1, -1);
 
@@ -115,18 +97,11 @@ public class AStarSearch {
 					
 					numBoard++;
 					
-<<<<<<< refs/remotes/origin/master
-					
-					Node n = new Node(possibleBoard,this.calculateManhattan(possibleBoard));
-					
-					
-=======
 					Node n = new Node(possibleBoard);
 					n.setGx(possibleBoard.getGx());
 					n.setMath(possibleBoard.calculateManhattan());
 					n.setFx(n.getGx()+n.getMath());
 					 
->>>>>>> update
 					nodes.add(n);
 			
 				
@@ -141,6 +116,8 @@ public class AStarSearch {
 		}
 		return true;
 	}
+	
+	
 	
 	
 	
@@ -172,6 +149,7 @@ public class AStarSearch {
 
 
 	public boolean isSolved(){
+		
 		if(currentBoard.getboardMap().containsValue(currentBoard.getGoalPiece())) {
 			return true;
 		}
@@ -185,35 +163,21 @@ public class AStarSearch {
 		starime = System.currentTimeMillis();
 		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		moveCount = 0;
-<<<<<<< refs/remotes/origin/master
-=======
 		
->>>>>>> update
 
 
 
 		while (!nodes.isEmpty()){
-<<<<<<< refs/remotes/origin/master
-=======
 			
->>>>>>> update
 			this.findAllPossibleMoves();
 			if(isSolved()) {
 				break;
 			}
 		
 			
-			temp =nodes.remove(); //takes out board from list
-			currentBoard = temp.getBoard();
-<<<<<<< refs/remotes/origin/master
-			//currentBoard.setG(1);
-			//System.out.println(temp.getBoard().toString());
-
+			temp =nodes.remove(); //takes out board from 	
 			
-
-			moveCount++;
-		}
-=======
+			currentBoard = temp.getBoard();
 
 			moveCount++;
 			
@@ -221,7 +185,6 @@ public class AStarSearch {
 		
 		
 		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
->>>>>>> update
 		stopTime = System.currentTimeMillis();
 		time=(float)(stopTime - starime)/1000;
 		long actualMemUsed=afterUsedMem-beforeUsedMem;

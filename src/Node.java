@@ -5,14 +5,8 @@ public class Node {
 
 	public Node(Board b){
 		myBoard = b;
-<<<<<<< refs/remotes/origin/master
-		visited=false;
-		manhatdis=ms;
-		gx=1;
-=======
 		manhatdis=0;
 		gx=0;
->>>>>>> update
 		fx=0;
 	}
 
@@ -41,13 +35,9 @@ public class Node {
 	}
 
 	public int getGx() {
-		return myBoard.getG();
+		return gx;
 	}
-<<<<<<< refs/remotes/origin/master
-	
-=======
 
->>>>>>> update
 	public void setFx(int f) {
 		this.fx=f;
 	}

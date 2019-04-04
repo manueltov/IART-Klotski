@@ -3,8 +3,8 @@ public class Point {
 	private int y;
 
 	public Point(int x, int y) {
-		this.x = x;
-		this.y = y;
+		this.x=x;
+		this.y=y;
 	}
 
 	public  boolean equals(Object point){
@@ -39,10 +39,10 @@ public class Point {
 	}
 
 	public void setX(int x) {
-		this.x = x;
+		this.x=x;
 	}
 
 	public void setY(int y) {
-		this.y = y;
+		this.y=y;
 	}
 }

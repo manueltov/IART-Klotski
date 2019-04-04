@@ -72,7 +72,7 @@ public class Utilities {
 			String strlevel = sc.nextLine();
 			level = Integer.parseInt(strlevel);
 		}
-		//sc.close();
+		sc.close();
 		return level;
 	}
 
@@ -254,4 +254,3 @@ public class Utilities {
     	}
     }
 }
->>>>>>> update
