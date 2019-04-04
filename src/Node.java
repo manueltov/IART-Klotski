@@ -14,9 +14,6 @@ public class Node {
 		gx=0;
 >>>>>>> update
 		fx=0;
-
-
-
 	}
 
 	public Board getBoard() {

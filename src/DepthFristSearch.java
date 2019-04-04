@@ -3,7 +3,7 @@ import java.util.HashSet;
 
 import java.util.Stack;
 
-public class DeepFristSearch {
+public class DepthFristSearch {
 	
 	private Board originalBoard; //original starting board
 	private Board currentBoard; //the board we have just taken out of the fringe
@@ -19,7 +19,7 @@ public class DeepFristSearch {
 
 
 
-	public DeepFristSearch(Board stardBoard) {
+	public DepthFristSearch(Board stardBoard) {
 		this.originalBoard=stardBoard;
 		this.currentBoard=stardBoard;
 
@@ -173,7 +173,7 @@ public class DeepFristSearch {
 		
 		 
 		System.out.println("+---------------------------------+");
-		System.out.println("|   Solve whit Deep First Search  |");
+		System.out.println("|   Solve whit Depth First Search  |");
 		System.out.println("+---------------------------------+\n");
 		
 		System.out.println("move count: " + moveCount);

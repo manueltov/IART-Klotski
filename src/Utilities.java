@@ -72,7 +72,7 @@ public class Utilities {
 			String strlevel = sc.nextLine();
 			level = Integer.parseInt(strlevel);
 		}
-		sc.close();
+		//sc.close();
 		return level;
 	}
 
@@ -131,7 +131,7 @@ public class Utilities {
     	for (int i = 1 ; i <= 46 ; i++){
         	System.out.println("level " + i);
             Board board = Utilities.loadLevel(i);
-            DeepFristSearch dfs=new DeepFristSearch(board);
+            DepthFristSearch dfs=new DepthFristSearch(board);
             dfs.solver();
             writeFileAuxDFS("DFSmoveCount.txt", writermoveCount, dfs);
             writeFileAuxDFS("DFSnumOfBoards.txt", writernumOfBoards, dfs);
@@ -144,7 +144,7 @@ public class Utilities {
     	writertime.close();
     }
     
-    private static void writeFileAuxDFS (String fileName, BufferedWriter writer, DeepFristSearch dfs) throws IOException {
+    private static void writeFileAuxDFS (String fileName, BufferedWriter writer, DepthFristSearch dfs) throws IOException {
     	switch (fileName) {
     		case "DFSmoveCount.txt":
     			writer.append(dfs.getMoveCount() + "\n");
@@ -211,22 +211,22 @@ public class Utilities {
     
 
     // --------------------------------
-    //  AStartSearch
+    //  AstarSearch
     // --------------------------------
-    public static void writeFilesAStartSearch () throws IOException {
-    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("AStartSearchmoveCount.txt"));
-        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("AStartSearchnumOfBoards.txt"));
-        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("AStartSearchmemoryUsage.txt"));
-        BufferedWriter writertime = new BufferedWriter(new FileWriter("AStartSearchtime.txt"));
+    public static void writeFilesAstarSearch () throws IOException {
+    	BufferedWriter writermoveCount = new BufferedWriter(new FileWriter("AstarSearchmoveCount.txt"));
+        BufferedWriter writernumOfBoards = new BufferedWriter(new FileWriter("AstarSearchnumOfBoards.txt"));
+        BufferedWriter writermemoryUsage = new BufferedWriter(new FileWriter("AstarSearchmemoryUsage.txt"));
+        BufferedWriter writertime = new BufferedWriter(new FileWriter("AstarSearchtime.txt"));
     	for (int i = 1 ; i <= 46 ; i++){
         	System.out.println("level " + i);
             Board board = Utilities.loadLevel(i);
-    		AStartSearch astart=new AStartSearch(board);
-    		astart.solver();
-    		writeFileAuxAStartSearch("AStartSearchmoveCount.txt", writermoveCount, astart);
-    		writeFileAuxAStartSearch("AStartSearchnumOfBoards.txt", writernumOfBoards, astart);
-    		writeFileAuxAStartSearch("AStartSearchmemoryUsage.txt", writermemoryUsage, astart);
-    		writeFileAuxAStartSearch("AStartSearchtime.txt", writertime, astart);
+    		AStarSearch astar = new AStarSearch(board);
+    		astar.solver();
+    		writeFileAuxAStarSearch("AstarSearchmoveCount.txt", writermoveCount, astar);
+    		writeFileAuxAStarSearch("AstarSearchnumOfBoards.txt", writernumOfBoards, astar);
+    		writeFileAuxAStarSearch("AstarSearchmemoryUsage.txt", writermemoryUsage, astar);
+    		writeFileAuxAStarSearch("AstarSearchtime.txt", writertime, astar);
         }
     	writermoveCount.close();
     	writernumOfBoards.close();
@@ -234,22 +234,22 @@ public class Utilities {
     	writertime.close();
     }
     
-    private static void writeFileAuxAStartSearch (String fileName, BufferedWriter writer, AStartSearch astart) throws IOException {
+    private static void writeFileAuxAStarSearch (String fileName, BufferedWriter writer, AStarSearch astar) throws IOException {
     	switch (fileName) {
-    		case "AStartSearchmoveCount.txt":
-    			writer.append(astart.getMoveCount() + "\n");
+    		case "AstarSearchmoveCount.txt":
+    			writer.append(astar.getMoveCount() + "\n");
     	        break;
 	    	
-    		case "AStartSearchnumOfBoards.txt":
-    			writer.append(astart.getNumBoard() + "\n");
+    		case "AstarSearchnumOfBoards.txt":
+    			writer.append(astar.getNumBoard() + "\n");
     	        break;
     		
-    		case "AStartSearchmemoryUsage.txt":
-    			writer.append(astart.getActualMemUsed() + "\n");
+    		case "AstarSearchmemoryUsage.txt":
+    			writer.append(astar.getActualMemUsed() + "\n");
     	        break;
     		
-    		case "AStartSearchtime.txt":
-    			writer.append(astart.getTime() + "\n");
+    		case "AstarSearchtime.txt":
+    			writer.append(astar.getTime() + "\n");
 		        break;
     	}
     }

@@ -5,28 +5,28 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 
-public class AStartSearch {
+public class AStarSearch {
 	
-	private Board originalBoard; //original starting board
+	private Board originalBoard; //original staring board
 	private Board currentBoard; //the board we have just taken out of the fringe
 	private PriorityQueue<Node> nodes;
 	private HashSet<Board> boardSeen; //hashset of all repeat boards
 	private Node temp;
 	private int moveCount;
 	private int numBoard;
-	private long startTime;
+	private long starime;
 	private long stopTime;
 	private float time;
 	
 
 
 
-	public AStartSearch(Board stardBoard) {
+	public AStarSearch(Board stardBoard) {
 		this.originalBoard=stardBoard;
 		this.currentBoard=stardBoard;
 
 		this.numBoard=0;
-		this.startTime=0;
+		this.starime=0;
 		this.stopTime=0;
 		this.time=0;
 
@@ -35,13 +35,13 @@ public class AStartSearch {
 		this.boardSeen.add(stardBoard);
 		
 
-		this.nodes= new PriorityQueue<Node>(10000, new NodeComparatorAstart());
+		this.nodes= new PriorityQueue<Node>(10000, new NodeComparatorAstar());
 		this.nodes.add(new Node(originalBoard));
 
 	}
 	
 
-	private class NodeComparatorAstart implements Comparator<Node>{
+	private class NodeComparatorAstar implements Comparator<Node>{
 		@Override //compares the fx=gx+hx  between two objects for our priority queue
 		
 		public int compare(Node obj1, Node obj2){
@@ -182,7 +182,7 @@ public class AStartSearch {
 
 	public void solver(){
 		
-		startTime = System.currentTimeMillis();
+		starime = System.currentTimeMillis();
 		long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 		moveCount = 0;
 <<<<<<< refs/remotes/origin/master
@@ -223,7 +223,7 @@ public class AStartSearch {
 		long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
 >>>>>>> update
 		stopTime = System.currentTimeMillis();
-		time=(float)(stopTime - startTime)/1000;
+		time=(float)(stopTime - starime)/1000;
 		long actualMemUsed=afterUsedMem-beforeUsedMem;
 	
 		
@@ -261,6 +261,14 @@ public class AStartSearch {
 		return this.boardSeen;
 	}
 
+	public float getActualMemUsed() {
+		return 0;
+	}
+	
+	public float getTime() {
+		return 0;
+	}
+
 	public int getMoveCount() {
 		return moveCount;
 	}
@@ -268,15 +276,4 @@ public class AStartSearch {
 	public int getNumBoard() {
 		return numBoard;
 	}
-
-	//TODO
-	public float getActualMemUsed() {
-		return 0;
-	}
-	
-	//TODO
-	public float getTime() {
-		return 0;
-	}
-
 }

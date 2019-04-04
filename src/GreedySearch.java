@@ -20,12 +20,6 @@ public class GreedySearch {
 	private float time;
 	private float actualMemUsed;
 
-<<<<<<< refs/remotes/origin/master
-
-=======
-  
->>>>>>> update
-
 	public GreedySearch(Board stardBoard) {
 		this.originalBoard=stardBoard;
 		this.currentBoard=stardBoard;
