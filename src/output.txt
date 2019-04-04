@@ -1,0 +1,88 @@
+Level: 1
+BFS Solver: 
+move count: 
+13739
+number of boards added to nodes: 
+14972
+final time: 
+1.012
+Level: 2
+BFS Solver: 
+move count: 
+1033
+number of boards added to nodes: 
+1064
+final time: 
+0.071
+Level: 3
+BFS Solver: 
+move count: 
+14306
+number of boards added to nodes: 
+15990
+final time: 
+0.816
+Level: 4
+BFS Solver: 
+move count: 
+28831
+number of boards added to nodes: 
+29707
+final time: 
+1.765
+Level: 5
+BFS Solver: 
+move count: 
+18743
+number of boards added to nodes: 
+19632
+final time: 
+1.039
+Level: 6
+BFS Solver: 
+move count: 
+22861
+number of boards added to nodes: 
+23170
+final time: 
+1.137
+Level: 7
+BFS Solver: 
+move count: 
+22309
+number of boards added to nodes: 
+22514
+final time: 
+1.02
+Level: 8
+BFS Solver: 
+move count: 
+1712
+number of boards added to nodes: 
+1952
+final time: 
+0.06
+Level: 9
+BFS Solver: 
+move count: 
+2323
+number of boards added to nodes: 
+2558
+final time: 
+0.079
+Level: 10
+BFS Solver: 
+move count: 
+1712
+number of boards added to nodes: 
+1952
+final time: 
+0.058
+Level: 11
+BFS Solver: 
+move count: 
+1645
+number of boards added to nodes: 
+1781
+final time: 
+0.052
